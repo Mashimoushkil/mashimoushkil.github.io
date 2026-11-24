@@ -84,6 +84,7 @@ form.panel .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);g
 .kv .tot{border-top:2px solid var(--ink);padding-top:6px}
 details summary{cursor:pointer;font:700 .95rem/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase}
 .tbl{overflow-x:auto;max-width:100%}.tbl td+td{white-space:nowrap}.tbl table{min-width:0}@media (max-width:480px){.tbl td,.tbl th{padding:6px 6px;font-size:.85rem}}.tbl td,.tbl th{padding:8px 10px;font-variant-numeric:tabular-nums}
+.lecture{border-left:6px solid var(--ink);padding:10px 14px;background:var(--paper);border-radius:0 8px 8px 0}.lecture p{margin:.4em 0}.lecture>strong{font:700 .85rem/1.2 var(--display);letter-spacing:.08em;text-transform:uppercase}figure svg{overflow:visible}
 .warn{border-left:6px solid var(--red);padding:10px 14px;background:var(--panel);border-radius:0 8px 8px 0}
 </style>
 <section class="stack"><span class="chip red">Outil · information générale</span><h1>Voiture : comptant, financement ou location ?</h1><p>Le paiement mensuel ne dit pas tout. L'outil additionne tout ce qui sort de ta poche pendant la même période (taxes, frais, intérêts, kilomètres en trop), retire ce que la voiture vaut encore à la fin, et tient compte de ce que ton argent aurait rapporté s'il était resté placé.</p></section>
@@ -102,8 +103,14 @@ details summary{cursor:pointer;font:700 .95rem/1.2 var(--display);letter-spacing
 <div class="row"><label>Km inclus par année<input id="kmi" type="number" min="0" step="1000" value="20000" inputmode="numeric"></label>
 <label>Km que tu roules par année<input id="kmr" type="number" min="0" step="1000" value="22000" inputmode="numeric"></label></div>
 <label>Frais par km en trop<input id="fkm" type="number" min="0" step="0.01" value="0.12" inputmode="decimal"></label></div></details>
-<details><summary>Hypothèses</summary><div class="row" style="margin-top:12px"><label>Valeur de revente à la fin de la période (% du prix)<input id="rev" type="number" min="0" max="100" step="1" value="45" inputmode="numeric"><small>Par défaut, comme la valeur résiduelle.</small></label>
-<label>Rendement de ton épargne (%)<input id="rp" type="number" min="0" max="15" step="0.5" value="4" inputmode="decimal"><small>Ce que ton argent rapporterait s'il restait placé.</small></label></div></details></form><div class="panel stack" id="out" aria-live="polite"><p id="verdict" class="big" style="font-size:clamp(1.5rem,4vw,2rem);line-height:1.15"></p><p id="sub" style="font-weight:700;margin:0"></p><div class="tbl"><table><thead><tr><th></th><th>Comptant</th><th>Financement</th><th>Location</th></tr></thead><tbody id="tb"></tbody></table></div><p id="note" style="margin:0;color:var(--muted)"></p></div></section>
+<label>Comparer sur<select id="hz"><option value="1">1 location (la durée choisie)</option><option value="2" selected>2 locations de suite</option><option value="3">3 locations de suite</option></select><small>Pour le comptant et le financement : tu gardes la même voiture toute la période.</small></label>
+<details><summary>Coûts de fonctionnement</summary><div class="stack" style="margin-top:12px"><div class="row"><label>Assurance par année<input id="ass" type="number" min="0" step="100" value="1500" inputmode="numeric"></label>
+<label>Énergie par année (essence ou électricité)<input id="nrg" type="number" min="0" step="100" value="700" inputmode="numeric"></label></div>
+<div class="row"><label>Entretien courant par année<input id="ent" type="number" min="0" step="100" value="600" inputmode="numeric"></label>
+<label>Immatriculation et permis par année<input id="imm" type="number" min="0" step="50" value="350" inputmode="numeric"></label></div>
+<label>Réparations hors garantie par année, après 4 ans<input id="rep" type="number" min="0" step="100" value="900" inputmode="numeric"><small>Pneus, freins, pièces : seulement pour la voiture que tu gardes. En location, tu as toujours une voiture neuve.</small></label></div></details>
+<details><summary>Hypothèses</summary><div class="row" style="margin-top:12px"><label>Valeur de revente à la fin de la 1<sup>re</sup> location (% du prix)<input id="rev" type="number" min="0" max="100" step="1" value="45" inputmode="numeric"><small>Par défaut, comme la valeur résiduelle.</small></label>
+<label>Rendement de ton épargne (%)<input id="rp" type="number" min="0" max="15" step="0.5" value="4" inputmode="decimal"><small>Ce que ton argent rapporterait s'il restait placé.</small></label></div></details></form><div class="panel stack" id="out" aria-live="polite"><p id="verdict" class="big" style="font-size:clamp(1.5rem,4vw,2rem);line-height:1.15"></p><p id="sub" style="font-weight:700;margin:0"></p><figure id="g0" style="margin:0"></figure><div class="tbl"><table><thead><tr><th></th><th>Comptant</th><th>Financement</th><th>Location</th></tr></thead> <tbody id="tb"></tbody></table></div><p id="note" style="margin:0;color:var(--muted)"></p><figure id="g" style="margin:0"></figure><div class="lecture"><strong>Ce que ça veut dire</strong><div id="lec"></div></div></div></section>
 <section class="stack"><h2>Comment c'est calculé</h2><p><strong>Même période pour les trois :</strong> la durée de la location. Pour le comptant et le financement, on retire à la fin ce que la voiture vaut encore (et le solde du prêt s'il en reste). Pour la location, tu rends la voiture : il ne reste rien, mais tu paies les kilomètres en trop et les frais de fin de contrat.</p>
 <p><strong>Taxes de vente :</strong> TPS + TVQ = 14,975 % au Québec, TVH = 13 % en Ontario. Elles s'appliquent au prix et aux frais, moins la valeur de ton échange. En location, elles s'appliquent au comptant et à chaque paiement.</p>
 <p><strong>Paiement de location :</strong> (coût capitalisé − valeur résiduelle) ÷ nombre de mois, plus les frais de financement : (coût capitalisé + valeur résiduelle) × taux ÷ 24. Le coût capitalisé = prix + frais − comptant − échange − subventions.</p>
@@ -114,7 +121,75 @@ details summary{cursor:pointer;font:700 .95rem/1.2 var(--display);letter-spacing
 <p>L'outil ne compte pas l'assurance, l'entretien, l'essence ou l'électricité (voir l'outil « Électrique ou essence ? »), ni l'immatriculation, qui sont à peu près les mêmes dans les trois cas. Les subventions dépendent du modèle et de la date à laquelle le concessionnaire fait la demande, et les fonds sont limités : vérifie les listes officielles. La façon dont le concessionnaire applique la subvention (avant ou après les taxes) peut changer le montant de quelques centaines de dollars. La valeur de revente est une hypothèse.</p><p>C'est une estimation à titre indicatif, pas un conseil personnalisé. Le chiffre officiel est celui de l'ARC, de Service Canada ou de Revenu Québec.</p></div>
 <section class="stack"><h3>Sources (vérifiées le 24 novembre 2026)</h3><ul class="src"><li><a href="https://tc.canada.ca/fr/transport-routier/technologies-novatrices/vehicules-electriques/programme-abordabilite-vehicules-electriques/questions-reponses">Transports Canada – Programme pour l&#x27;abordabilité des véhicules électriques : questions et réponses</a></li><li><a href="https://tc.canada.ca/fr/transport-routier/technologies-novatrices/vehicules-electriques/programme-abordabilite-vehicules-electriques-pave/liste-vehicules-pave">Transports Canada – Liste des véhicules admissibles (PAVE)</a></li><li><a href="https://www.quebec.ca/transports/transport-electrique/aide-financiere-vehicule-electrique/programme-roulez-vert">Gouvernement du Québec – Programme Roulez vert</a></li><li><a href="https://www.quebec.ca/transports/transport-electrique/aide-financiere-vehicule-electrique/vehicule-neuf/montant-rabais">Gouvernement du Québec – Montant de l&#x27;aide pour un véhicule électrique neuf</a></li><li><a href="https://www.quebec.ca/transports/transport-electrique/aide-financiere-vehicule-electrique/vehicule-neuf/conditions-requises">Gouvernement du Québec – Conditions pour un véhicule neuf (location)</a></li><li><a href="https://www.canada.ca/fr/agence-consommation-matiere-financiere/services/prets/financer-auto/options-financement.html">Agence de la consommation en matière financière du Canada – Options de financement automobile</a></li></ul></section>
 <nav class="pager"><a class="btn" href="../outils.html">← Tous les outils</a></nav>
-<script>const $=n=>n.toLocaleString('fr-CA',{maximumFractionDigits:0})+' $';const $2=n=>n.toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';const v=id=>Number(document.getElementById(id).value)||0;const pc=x=>(x*100).toLocaleString('fr-CA',{minimumFractionDigits:1,maximumFractionDigits:1})+'\u00a0%';const sel=id=>document.getElementById(id).value;const ck=id=>document.getElementById(id).checked;const $id=id=>document.getElementById(id);const nl=(a,b,k='')=>`<span${k}>${a}</span><span${k}>${b}</span>`;
+<script>const $=n=>n.toLocaleString('fr-CA',{maximumFractionDigits:0})+' $';const $2=n=>n.toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';const v=id=>Number(document.getElementById(id).value)||0;/* Mashi Moushkil · moteur d'impôt simplifié 2026 (Québec et Ontario), une personne seule, revenus d'emploi.
+   Paramètres vérifiés le 24 novembre 2026 : ARC, Revenu Québec, Retraite Québec, EDSC, RCGT (tables 2026). */
+const P26={
+ fed:{br:[[58523,.14],[117045,.205],[181440,.26],[258482,.29],[Infinity,.33]],cr:.14,bpaMax:16452,bpaMin:14829,bpaA:181440,bpaB:258482,emp:1501,abQC:.165},
+ qc:{br:[[54345,.14],[108680,.19],[132245,.24],[Infinity,.2575]],cr:.14,bpa:18952,workMax:1450,workRate:.06},
+ on:{br:[[53891,.0505],[107785,.0915],[150000,.1116],[220000,.1216],[Infinity,.1316]],cr:.0505,bpa:12989,s1:5818,s2:7446},
+ cpp:{max:74600,ex:3500,base:.0495,add1:.01,max2:85000,r2:.04},
+ qpp:{max:74600,ex:3500,base:.053,add1:.01,max2:85000,r2:.04},
+ ei:{max:68900,on:.0163,qc:.013},qpip:{max:103000,r:.0043}
+};
+function bracketTax(x,br){let t=0,lo=0;for(const[hi,r]of br){if(x>lo)t+=(Math.min(x,hi)-lo)*r;lo=hi}return t}
+function ohp(x){if(x<=20000)return 0;if(x<=25000)return .06*(x-20000);if(x<=36000)return 300;if(x<=38500)return 300+.06*(x-36000);if(x<=48000)return 450;
+ if(x<=48600)return 450+.25*(x-48000);if(x<=72000)return 600;if(x<=72600)return 600+.25*(x-72000);if(x<=200000)return 750;if(x<=200600)return 750+.25*(x-200000);return 900}
+/* prov : 'qc' ou 'on' ; emploi : revenu d'emploi brut ; autre : autres revenus imposables (retraite, etc.) ; reer : cotisation REER déduite */
+function impot(prov,emploi,autre=0,reer=0){
+ const Q=prov==='qc',R=Q?P26.qpp:P26.cpp,pens=Math.max(0,Math.min(emploi,R.max)-R.ex);
+ const rBase=R.base*pens,rAdd=R.add1*pens,r2=R.r2*Math.max(0,Math.min(emploi,R.max2)-R.max);
+ const ae=Math.min(emploi,P26.ei.max)*(Q?P26.ei.qc:P26.ei.on),rqap=Q?Math.min(emploi,P26.qpip.max)*P26.qpip.r:0;
+ const net=Math.max(0,emploi+autre-rAdd-r2-reer);
+ const F=P26.fed,bpa=net<=F.bpaA?F.bpaMax:net>=F.bpaB?F.bpaMin:F.bpaMax-(F.bpaMax-F.bpaMin)*(net-F.bpaA)/(F.bpaB-F.bpaA);
+ let fed=Math.max(0,bracketTax(net,F.br)-F.cr*(bpa+rBase+ae+rqap+Math.min(emploi,F.emp)));
+ const abat=Q?fed*F.abQC:0;fed-=abat;
+ let prov_=0,sur=0,sante=0,trav=0;
+ if(Q){trav=Math.min(P26.qc.workMax,P26.qc.workRate*emploi);prov_=Math.max(0,bracketTax(Math.max(0,net-trav),P26.qc.br)-P26.qc.cr*P26.qc.bpa)}
+ else{const O=P26.on,b=Math.max(0,bracketTax(net,O.br)-O.cr*(O.bpa+rBase+ae));sur=.2*Math.max(0,b-O.s1)+.36*Math.max(0,b-O.s2);prov_=b+sur;sante=ohp(net)}
+ const cot=rBase+rAdd+r2+ae+rqap,total=fed+prov_+sante;
+ return{brut:emploi+autre,net,fed,abat,prov:prov_,sur,sante,trav,rBase,rAdd,r2,ae,rqap,cot,impots:total,dispo:emploi+autre-reer-cot-total};
+}
+function tauxMarginal(prov,emploi,autre=0){const a=impot(prov,emploi,autre),b=impot(prov,emploi+100,autre);return((b.impots+b.cot)-(a.impots+a.cot))/100}
+function tauxMarginalImpot(prov,emploi,autre=0){const a=impot(prov,emploi,autre),b=impot(prov,emploi,autre+100);return(b.impots-a.impots)/100}
+function remboursementReer(prov,emploi,g){return impot(prov,emploi).impots-impot(prov,emploi,0,g).impots}
+/* Hypothèque canadienne : taux composé semestriellement */
+function tauxPeriode(tauxAnnuel,parAn){return Math.pow(1+tauxAnnuel/2,2/parAn)-1}
+function paiement(capital,tauxAnnuel,ans,parAn=12){const i=tauxPeriode(tauxAnnuel,parAn),n=ans*parAn;return i===0?capital/n:capital*i/(1-Math.pow(1+i,-n))}
+function primeSCHL(prix,mise){const p=mise/prix;if(p>=.2||prix>=1500000)return 0;return(prix-mise)*(p>=.15?.028:p>=.10?.031:.04)}
+function miseMinimale(prix){return prix>=1500000?.2*prix:prix<=500000?.05*prix:25000+.1*(prix-500000)}
+/* Petits graphiques SVG sans bibliothèque, aux couleurs du site (variables CSS). */
+const KS=z=>{const a=Math.abs(z);return a>=1e6?(z/1e6).toLocaleString('fr-CA',{maximumFractionDigits:2})+' M$':a>=1e3?(z/1e3).toLocaleString('fr-CA',{maximumFractionDigits:a>=1e4?0:1})+' k$':Math.round(z)+' $'};
+function niceStep(span,k){const st=10**Math.floor(Math.log10(span/k||1));return[1,2,2.5,5,10].map(m=>m*st).find(s=>span/s<=k)||st*10}
+function chartBox(id){const el=document.getElementById(id),W=Math.max(320,el.clientWidth||640);return{el,W}}
+/* S : [{nom,coul,data:[y0,y1,...], tirets}] ; o : {xl:i=>label, pas:5, fmt, vline:{x,txt}, pts:[{x,y,txt}], cap} */
+function lineChart(id,S,o={}){const{el,W}=chartBox(id),H=W<500?250:290,l=62,r=W<500?84:110,tp=18,bt=32,n=Math.max(...S.map(s=>s.data.length))-1,f=o.fmt||KS;
+ const all=S.flatMap(s=>s.data),mn0=Math.min(0,...all),mx0=Math.max(...all,1),st=niceStep(mx0-mn0,5),mn=Math.floor(mn0/st)*st,mx=Math.ceil(mx0/st)*st;
+ const X=i=>l+(W-l-r)*i/Math.max(1,n),Y=z=>tp+(H-tp-bt)*(1-(z-mn)/(mx-mn||1));let g='';
+ for(let z=mn;z<=mx+st/2;z+=st)g+=`<line x1="${l}" x2="${W-r}" y1="${Y(z)}" y2="${Y(z)}" stroke="var(--line)"/><text x="${l-8}" y="${Y(z)+4}" text-anchor="end">${f(z)}</text>`;
+ const pas=o.pas||(n>20||W<500?Math.ceil(n/4/5)*5||1:5);for(let i=0;i<=n;i+=pas)g+=`<text x="${X(i)}" y="${H-10}" text-anchor="middle">${o.xl?o.xl(i):i}</text>`;
+ if(o.vline&&o.vline.x<=n)g+=`<line x1="${X(o.vline.x)}" x2="${X(o.vline.x)}" y1="${tp}" y2="${H-bt}" stroke="var(--muted)" stroke-dasharray="4 4"/><text x="${X(o.vline.x)+(o.vline.x>n/2?-6:6)}" y="${tp+10}" text-anchor="${o.vline.x>n/2?'end':'start'}">${o.vline.txt}</text>`;
+ const ends=S.map(s=>({s,y:Y(s.data[s.data.length-1])})).sort((a,b)=>a.y-b.y);for(let i=1;i<ends.length;i++)if(ends[i].y-ends[i-1].y<32)ends[i].y=ends[i-1].y+32;
+ for(const s of S)g+=`<polyline fill="none" stroke="${s.coul}" stroke-width="3.5" stroke-linejoin="round" ${s.tirets?'stroke-dasharray="7 5"':''} points="${s.data.map((z,i)=>X(i)+','+Y(z)).join(' ')}"/><circle cx="${X(s.data.length-1)}" cy="${Y(s.data[s.data.length-1])}" r="5" fill="${s.coul}"/>`;
+ for(const e of ends)g+=`<text x="${X(e.s.data.length-1)+10}" y="${e.y+4}" fill="${e.s.coul}" font-weight="700">${e.s.nom}</text><text x="${X(e.s.data.length-1)+10}" y="${e.y+18}" fill="${e.s.coul}">${f(e.s.data[e.s.data.length-1])}</text>`;
+ for(const p of o.pts||[])g+=`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="6" fill="var(--panel)" stroke="var(--ink)" stroke-width="2.5"/><text x="${X(p.x)+(p.x>n*.6?-10:10)}" y="${Y(p.y)-10}" text-anchor="${p.x>n*.6?'end':'start'}" fill="var(--ink)" font-weight="700">${p.txt}</text>`;
+ el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" style="font:600 12px/1 var(--body);fill:var(--muted);display:block">${g}</svg>`+(o.cap?`<figcaption style="color:var(--muted);font-size:.9rem">${o.cap}</figcaption>`:'')}
+/* Barres horizontales : items [{nom,val,coul,txt}] */
+function hBars(id,items,o={}){const{el,W}=chartBox(id),lw=Math.min(170,W*.36),rh=40,H=items.length*rh+8,mx=Math.max(...items.map(i=>Math.abs(i.val)),1),bw=W-lw-90;let g='';
+ items.forEach((it,k)=>{const y=k*rh+6,w=Math.max(2,bw*Math.abs(it.val)/mx);g+=`<text x="${lw-10}" y="${y+19}" text-anchor="end" fill="var(--ink)">${it.nom}</text><rect x="${lw}" y="${y}" width="${w}" height="26" rx="4" fill="${it.coul}"/><text x="${lw+w+8}" y="${y+18}" fill="var(--ink)" font-weight="700">${it.txt||(o.fmt||KS)(it.val)}</text>`});
+ el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" style="font:600 13px/1 var(--body);display:block">${g}</svg>`+(o.cap?`<figcaption style="color:var(--muted);font-size:.9rem">${o.cap}</figcaption>`:'')}
+/* Une barre découpée en parts : parts [{nom,val,coul}] */
+function partBar(id,parts,o={}){const{el,W}=chartBox(id),tot=parts.reduce((a,p)=>a+Math.max(0,p.val),0)||1;let x=0,g='',leg='';
+ for(const p of parts){const w=W*Math.max(0,p.val)/tot;g+=`<rect x="${x}" y="0" width="${w}" height="34" fill="${p.coul}"/>`+(w>46?`<text x="${x+w/2}" y="22" text-anchor="middle" fill="${p.txtc||'#fff'}" font-weight="700">${Math.round(100*p.val/tot)} %</text>`:'');x+=w;
+  leg+=`<span style="display:inline-flex;align-items:center;gap:6px;margin:0 14px 4px 0"><i style="width:12px;height:12px;border-radius:3px;background:${p.coul};display:inline-block"></i>${p.nom}</span>`}
+ el.innerHTML=`<svg viewBox="0 0 ${W} 34" width="100%" role="img" style="font:600 13px/1 var(--body);display:block;border-radius:6px">${g}</svg><figcaption style="font-size:.9rem;margin-top:8px">${leg}</figcaption>`}
+/* Barres verticales empilées : xs labels, S [{nom,coul,data}] */
+function stackBars(id,xs,S,o={}){const{el,W}=chartBox(id),H=W<500?230:270,l=62,r=10,tp=10,bt=30,n=xs.length,tot=xs.map((_,i)=>S.reduce((a,s)=>a+s.data[i],0)),st=niceStep(Math.max(...tot,1),5),mx=Math.ceil(Math.max(...tot,1)/st)*st;
+ const bw=(W-l-r)/n,Y=z=>tp+(H-tp-bt)*(1-z/mx);let g='';for(let z=0;z<=mx+st/2;z+=st)g+=`<line x1="${l}" x2="${W-r}" y1="${Y(z)}" y2="${Y(z)}" stroke="var(--line)"/><text x="${l-8}" y="${Y(z)+4}" text-anchor="end">${(o.fmt||KS)(z)}</text>`;
+ const pas=o.pas||Math.ceil(n/(W<500?6:12));xs.forEach((x,i)=>{let b=0;for(const s of S){const v=s.data[i];g+=`<rect x="${l+i*bw+bw*.12}" y="${Y(b+v)}" width="${bw*.76}" height="${Math.max(0,Y(b)-Y(b+v))}" fill="${s.coul}"/>`;b+=v}
+  if(i%pas===0||i===n-1)g+=`<text x="${l+i*bw+bw/2}" y="${H-10}" text-anchor="middle">${x}</text>`});
+ const leg=S.map(s=>`<span style="display:inline-flex;align-items:center;gap:6px;margin-right:14px"><i style="width:12px;height:12px;border-radius:3px;background:${s.coul};display:inline-block"></i>${s.nom}</span>`).join('');
+ el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" style="font:600 12px/1 var(--body);fill:var(--muted);display:block">${g}</svg><figcaption style="font-size:.9rem;margin-top:6px">${leg}${o.cap?`<br><span style="color:var(--muted)">${o.cap}</span>`:''}</figcaption>`}
+const L_=(...a)=>a.filter(Boolean).map(x=>'<p>'+x+'</p>').join('');const pc=x=>(x*100).toLocaleString('fr-CA',{minimumFractionDigits:1,maximumFractionDigits:1})+'\u00a0%';const sel=id=>document.getElementById(id).value;const ck=id=>document.getElementById(id).checked;const $id=id=>document.getElementById(id);const nl=(a,b,k='')=>`<span${k}>${a}</span><span${k}>${b}</span>`;
 const TAXV={qc:.14975,on:.13};
 /* type : ess, hyb (hybride non rechargeable), phev15 (≥ 15 kWh), phev8 (< 15 kWh), ve ; an : 2026 ou 2027 ; mois : 0 = achat, sinon durée de location */
 function subFed(type,an,valeur,canada,mois){const base=type==='ve'?(an>=2027?4000:5000):(type==='phev15'||type==='phev8')?(an>=2027?2000:2500):0;
@@ -125,37 +200,51 @@ function pmtMensuel(L,taux,n){const i=taux/12;return i===0?L/n:L*i/(1-Math.pow(1
 function soldeApres(L,taux,n,k){const i=taux/12,p=pmtMensuel(L,taux,n);return i===0?Math.max(0,L-p*k):Math.max(0,L*Math.pow(1+i,k)-p*(Math.pow(1+i,k)-1)/i)}
 const TYPES='<option value="ess">Essence</option><option value="hyb">Hybride (non rechargeable)</option><option value="phev15">Hybride rechargeable (batterie de 15 kWh ou plus)</option><option value="phev8">Hybride rechargeable (moins de 15 kWh)</option><option value="ve">100 % électrique</option>';
 function calc(){const p=sel('prov'),ty=sel('type'),an=Number(sel('an')),P=v('prix'),F=v('frais'),E=Math.min(v('ech'),P+F),C=v('cpt'),T=TAXV[p];
- const nL=Number(sel('nl')),nF=Number(sel('nf')),r=v('rp')/100,g=Math.pow(1+r,1/12),fv=(x,m)=>x*Math.pow(g,nL-m),can=ck('can');
- const val=P+F,taxBase=Math.max(0,val-E),total=taxBase*(1+T);
- const sA=subFed(ty,an,val,can,0)+subQC(p,ty,an,0),sL=subFed(ty,an,val,can,nL)+subQC(p,ty,an,nL),revente=P*v('rev')/100;
- // Comptant
- const cashA=total-sA,coutA=fv(cashA,0)-revente;
- // Financement
- const down=Math.min(C,cashA),L=Math.max(0,cashA-down),pf=pmtMensuel(L,v('tf')/100,nF),kk=Math.min(nL,nF);let fvF=fv(down,0);for(let m=1;m<=kk;m++)fvF+=fv(pf,m);
- const solde=nF>nL?soldeApres(L,v('tf')/100,nF,nL):0,interets=pf*nF-L,coutF=fvF+solde-revente;
- // Location
+ const nL=Number(sel('nl')),nF=Number(sel('nf')),H=nL*Number(sel('hz')),tf=v('tf')/100,g=Math.pow(1+v('rp')/100,1/12),can=ck('can');
+ const val=P+F,taxBase=Math.max(0,val-E),taxA=taxBase*T,total=taxBase*(1+T);
+ const sA=subFed(ty,an,val,can,0)+subQC(p,ty,an,0),sL=subFed(ty,an,val,can,nL)+subQC(p,ty,an,nL),rv=v('rev')/100,valeur=m=>P*Math.pow(rv,m/nL);
+ const cashA=total-sA,down=Math.min(C,cashA),Lf=Math.max(0,cashA-down),pf=pmtMensuel(Lf,tf,nF);
  const capC=Math.max(0,val-C/(1+T)-E-sL),resid=P*v('res')/100,mf=v('tl')/100/24,pl0=(capC-resid)/nL+(capC+resid)*mf,pl=pl0*(1+T);
- const km=Math.max(0,v('kmr')-v('kmi'))*nL/12*v('fkm')*(1+T),fin=v('facq')*(1+T);let fvL=fv(C,0);for(let m=1;m<=nL;m++)fvL+=fv(pl,m);fvL+=fv(km+fin*.5,nL)+fv(fin*.5,0);
- const coutL=fvL,sortiesL=C+pl*nL+km+fin;
- const c=[['Comptant',coutA],['Financement',coutF],['Location',coutL]].sort((a,b)=>a[1]-b[1]);
- $id('verdict').textContent=`${c[0][0]} : le moins cher sur ${nL} mois`;
- $id('sub').textContent=`${c[1][0]} coûte environ ${$(c[1][1]-c[0][1])} de plus, ${c[2][0].toLowerCase()} ${$(c[2][1]-c[0][1])} de plus.`;
- const row=(l,a,b,d,k='')=>`<tr${k}><td>${l}</td><td>${a}</td><td>${b}</td><td>${d}</td></tr>`;
- $id('tb').innerHTML=row('Taxes de vente',$(taxBase*T),$(taxBase*T),$(C-C/(1+T)+(pl-pl0)*nL+(km+fin)*T/(1+T)))
-  +row('Subventions',sA?'− '+$(sA):'—',sA?'− '+$(sA):'—',sL?'− '+$(sL):'—')
-  +row('Comptant au départ',$(cashA),$(down),$(C))
-  +row('Paiement mensuel','—',`${$2(pf)} × ${nF}`,`${$2(pl)} × ${nL}`)
-  +row('Intérêts ou frais de financement','—',$(interets)+(nF>nL?` (sur ${nF} mois)`:''),$((capC+resid)*mf*nL))
-  +row('Km en trop et frais de location','—','—',$(km+fin))
-  +row(`Total sorti de ta poche en ${nL} mois`,$(cashA),$(down+pf*kk),$(sortiesL))
-  +row('Solde du prêt à payer','—',solde?$(solde):'0 $','—')
-  +row('− Valeur de la voiture à la fin',$(revente),$(revente),'tu la rends')
-  +row('<strong>Coût net, rendement compris</strong>',`<strong>${$(coutA)}</strong>`,`<strong>${$(coutF)}</strong>`,`<strong>${$(coutL)}</strong>`);
+ const km=Math.max(0,v('kmr')-v('kmi'))*nL/12*v('fkm')*(1+T),fin=v('facq')*(1+T),ops=(v('ass')+v('nrg')+v('ent')+v('imm'))/12,rep=v('rep')/12;
+ let A=cashA,Fi=down,Lo=C+fin/2,nA=cashA,nFi=down,nLo=C+fin/2,opsT=0,repT=0,intF=0,b=Lf;const SA=[],SF=[],SL=[];
+ const snap=m=>{const vv=valeur(m);SA.push(A-vv);SF.push(Fi-vv+b);SL.push(Lo)};snap(0);
+ for(let m=1;m<=H;m++){A*=g;Fi*=g;Lo*=g;
+  const o=ops+(m>48?rep:0);A+=o;Fi+=o;Lo+=ops;nA+=o;nFi+=o;nLo+=ops;opsT+=ops;if(m>48)repT+=rep;
+  if(m<=nF&&b>0.005){const it=b*tf/12;intF+=it;b=Math.max(0,b+it-pf);Fi+=pf;nFi+=pf}
+  Lo+=pl;nLo+=pl;if(m%nL===0){Lo+=km+fin/2;nLo+=km+fin/2;if(m<H){Lo+=C+fin/2;nLo+=C+fin/2}}
+  if(m%12===0||m===H)snap(m)}
+ const vf=valeur(H),cA=A-vf,cF=Fi-vf+b,cL=Lo,cy=H/nL;
+ const c=[['Comptant',cA],['Financement',cF],['Location',cL]].sort((x,y)=>x[1]-y[1]),ans=(H/12).toLocaleString('fr-CA',{maximumFractionDigits:1});
+ $id('verdict').textContent=`${c[0][0]} : le moins cher sur ${ans} ans`;
+ $id('sub').textContent=`${c[1][0]} : + ${$(c[1][1]-c[0][1])} · ${c[2][0]} : + ${$(c[2][1]-c[0][1])}`;
+ lineChart('g0',[{nom:'Comptant',coul:'var(--ink)',data:SA},{nom:'Financement',coul:'var(--amber)',data:SF},{nom:'Location',coul:'var(--red)',data:SL}],{xl:i=>i===SA.length-1&&H%12?ans+' ans':i+' an'+(i>1?'s':''),pas:1,vline:cy>1?{x:nL/12,txt:'Nouvelle location'}:nF<H?{x:nF/12,txt:'Prêt payé'}:null,cap:'Coût net à chaque date : tout ce qui est sorti de ta poche (avec ce que ton argent aurait rapporté), fonctionnement compris, moins ce que vaut la voiture (et plus le solde du prêt).'});
+ const row=(l,a,b2,d,k='')=>`<tr${k}><td>${l}</td><td>${a}</td><td>${b2}</td><td>${d}</td></tr>`;
+ $id('tb').innerHTML=row('Taxes de vente',$(taxA),$(taxA),$(cy*(C-C/(1+T)+(pl-pl0)*nL+(km+fin)*T/(1+T))))
+  +row('Subventions',sA?'− '+$(sA):'—',sA?'− '+$(sA):'—',sL?'− '+$(sL)+(cy>1?` × ${cy}`:''):'—')
+  +row('Comptant au départ',$(cashA),$(down),$(C)+(cy>1?` × ${cy}`:''))
+  +row('Paiement mensuel','—',`${$2(pf)} × ${nF}`,`${$2(pl)} × ${H}`)
+  +row('Intérêts ou frais de financement','—',$(intF),$(cy*(capC+resid)*mf*nL))
+  +row('Km en trop et frais de location','—','—',$(cy*(km+fin)))
+  +row('Assurance, énergie, entretien, immatriculation',$(opsT),$(opsT),$(opsT))
+  +row('Réparations hors garantie',$(repT),$(repT),'—')
+  +row(`Total sorti de ta poche en ${ans} ans`,$(nA),$(nFi),$(nLo))
+  +row('Solde du prêt à payer','—',b>1?$(b):'0 $','—')
+  +row('− Valeur de la voiture à la fin',$(vf),$(vf),'tu la rends')
+  +row('<strong>Coût net, rendement compris</strong>',`<strong>${$(cA)}</strong>`,`<strong>${$(cF)}</strong>`,`<strong>${$(cL)}</strong>`)
+  +row('Par mois, en moyenne',$(cA/H),$(cF/H),$(cL/H));
  const w=[];if((ty==='ve'||ty.startsWith('phev'))&&!can&&val>50000)w.push('Valeur de la transaction au-dessus de 50 000 $ : pas de subvention fédérale, sauf pour un véhicule assemblé au Canada.');
  if(p==='qc'&&an>=2027&&ty!=='ess'&&ty!=='hyb')w.push('Roulez vert prend fin le 31 décembre 2026 : aucune aide du Québec en 2027.');
- if(nF>nL)w.push(`Le prêt de ${nF} mois dure plus longtemps que la période comparée : il resterait ${$(solde)} à payer après ${nL} mois.`);
- if(L>0&&revente<solde)w.push('Attention : à la fin de la période, tu devrais plus que ce que vaut la voiture (équité négative).');
- $id('note').innerHTML=w.join('<br>');}
-document.getElementById('f').addEventListener('input',calc);calc();</script></main>
+ if(cy>1&&sL)w.push(`L'outil suppose la même subvention pour chaque nouvelle location ; en réalité, les montants baissent avec les années (ou le programme s'arrête).`);
+ $id('note').innerHTML=w.join('<br>');
+ const cross=SF.findIndex((z,i)=>i>0&&z<=SL[i]),eqNeg=b>valeur(Math.min(H,nL))&&nF>nL;
+ $id('lec').innerHTML=L_(`La location a souvent le paiement le plus bas (${$2(pl)} contre ${$2(pf)} en financement), mais un paiement bas ne veut pas dire un coût bas : en location, tu paies la partie de la voiture que tu utilises, puis tu recommences.`,
+  cy>1?`À chaque nouvelle location, tu repaies un comptant, des frais et des taxes, et la voiture neuve perd sa valeur la plus vite. Celui qui garde sa voiture, lui, finit de payer son prêt${nF<H?` après ${nF/12} ans`:''} et n'a plus que les frais de fonctionnement.`:'Sur une seule période de location, l\'écart est souvent petit : l\'achat devient vraiment avantageux quand tu gardes la voiture longtemps après la fin du prêt. Essaie « 2 locations de suite ».',
+  cross>0?`Sur le graphique, le financement passe sous la location vers la ${cross}<sup>e</sup> année.`:'',
+  `Payer comptant évite ${$(intF)} d'intérêts, mais immobilise ${$(cashA)}. Si ton épargne rapporte plus que le taux du prêt (${String(v('tf')).replace('.',',')} %), financer peut être raisonnable ; sinon, le comptant gagne.`,
+  v('kmr')>v('kmi')?`Tu prévois rouler ${(v('kmr')-v('kmi')).toLocaleString('fr-CA')} km de plus par année que ce que la location inclut : ça ajoute ${$(km)} à la fin de chaque contrat. Négocie un forfait de km plus élevé dès le départ, c'est moins cher.`:'',
+  nF>=84?`Un prêt de ${nF} mois baisse le paiement, mais tu paies ${$(intF)} d'intérêts${eqNeg?' et, pendant plusieurs années, tu dois plus que ce que vaut la voiture (équité négative) : la revendre ou l\'échanger tôt coûte cher':''}.`:'',
+  sL<sA&&sA?`En location de ${nL} mois, la subvention est réduite (${$(sL)} au lieu de ${$(sA)}) : le montant complet exige 48 mois.`:'',
+  'Les coûts de fonctionnement sont les mêmes dans les trois cas, sauf les réparations après 4 ans : ils ne changent pas le classement, mais montrent le vrai coût d\'avoir une voiture.');}
+document.getElementById('f').addEventListener('input',calc);calc();let _rt;addEventListener('resize',()=>{clearTimeout(_rt);_rt=setTimeout(calc,150)});</script></main>
 <footer class="site"><div class="wrap"><p><strong style="color:var(--ink)">Information générale seulement.</strong> Rien sur ce site n'est un conseil financier, fiscal ou juridique personnalisé. Les règles et les montants changent : vérifie toujours la source officielle. Recherche assistée par IA, chaque chiffre vérifié avant publication.</p>
 <div class="stack" style="gap:6px"><span>Contact : <span class="mail">mmoushkil@gmail.com</span></span><span><a href="https://www.youtube.com/@mashimoushkil">YouTube</a> · <a href="https://www.instagram.com/mashimoushkil">Instagram</a> · <a href="https://www.facebook.com/profile.php?id=61596326894950">Facebook</a> · <a href="https://www.tiktok.com/@mashimoushkil">TikTok</a></span></div></div></footer></body></html>

@@ -84,6 +84,7 @@ form.panel .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);g
 .kv .tot{border-top:2px solid var(--ink);padding-top:6px}
 details summary{cursor:pointer;font:700 .95rem/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase}
 .tbl{overflow-x:auto;max-width:100%}.tbl td+td{white-space:nowrap}.tbl table{min-width:0}@media (max-width:480px){.tbl td,.tbl th{padding:6px 6px;font-size:.85rem}}.tbl td,.tbl th{padding:8px 10px;font-variant-numeric:tabular-nums}
+.lecture{border-left:6px solid var(--ink);padding:10px 14px;background:var(--paper);border-radius:0 8px 8px 0}.lecture p{margin:.4em 0}.lecture>strong{font:700 .85rem/1.2 var(--display);letter-spacing:.08em;text-transform:uppercase}figure svg{overflow:visible}
 .warn{border-left:6px solid var(--red);padding:10px 14px;background:var(--panel);border-radius:0 8px 8px 0}
 </style>
 <section class="stack"><span class="chip red">Outil · information générale</span><h1>Les subventions de ton REEE</h1><p>Quand tu cotises au REEE de ton enfant, le gouvernement fédéral ajoute 20 % (la SCEE), et le Québec 10 % de plus (l'IQEE) si tu y habites. Les droits non utilisés se reportent, avec un maximum par année.</p></section>
@@ -91,23 +92,97 @@ details summary{cursor:pointer;font:700 .95rem/1.2 var(--display);letter-spacing
 <label>Cotisation par année<input id="cot" type="number" min="0" step="100" value="2500" inputmode="numeric"><small>Jusqu'à ses 17 ans.</small></label></div>
 <label>Revenu familial net<input id="rev" type="number" min="0" step="1000" value="90000" inputmode="numeric"><small>Sert à calculer les montants supplémentaires.</small></label>
 <label class="check"><input id="qc" type="checkbox" checked> Nous habitons au Québec (IQEE)</label>
-<label class="check"><input id="deja" type="checkbox"> Les droits passés ont déjà été utilisés (cotisations depuis la naissance)</label></form><div class="panel stack" id="out" aria-live="polite"><p>Subventions estimées jusqu'à 17 ans</p><div class="big" id="r"></div><div class="kv" id="kv"></div><details><summary>Détail par âge</summary><div class="tbl"><table><thead><tr><th>Âge</th><th>Cotisation</th><th>SCEE</th><th>IQEE</th></tr></thead><tbody id="tb"></tbody></table></div></details></div></section>
+<label class="check"><input id="deja" type="checkbox"> Les droits passés ont déjà été utilisés (cotisations depuis la naissance)</label></form><div class="panel stack" id="out" aria-live="polite"><p>Subventions estimées jusqu'à 17 ans</p><div class="big" id="r"></div><div class="kv" id="kv"></div><figure id="g" style="margin:0"></figure><div class="lecture"><strong>Ce que ça veut dire</strong><div id="lec"></div></div><details><summary>Détail par âge</summary><div class="tbl"><table><thead><tr><th>Âge</th><th>Cotisation</th><th>SCEE</th><th>IQEE</th></tr></thead><tbody id="tb"></tbody></table></div></details></div></section>
 <section class="stack"><h2>Comment c'est calculé</h2><p>SCEE de base : 20 % des cotisations, jusqu'à 500 $ par an, ou 1 000 $ avec des droits reportés. SCEE supplémentaire : 20 % (revenu familial jusqu'à 58 523 $) ou 10 % (jusqu'à 117 045 $) de la première tranche de 500 $. Maximum à vie : 7 200 $. IQEE : 10 % des cotisations, jusqu'à 250 $ par an, ou 500 $ avec report, plus 10 % (revenu jusqu'à 54 345 $) ou 5 % (jusqu'à 108 680 $) de la première tranche de 500 $. Maximum à vie : 3 600 $. Seuils de 2026, gardés constants dans l'outil.</p></section>
 <div class="warn stack"><strong>Limites de l'outil</strong><p>L'outil ne calcule pas le rendement des placements, ni le Bon d'études canadien (jusqu'à 2 000 $ pour les familles à faible revenu, sans cotisation obligatoire). À 16 et 17 ans, la SCEE n'est versée que si des cotisations ont été faites avant la fin de l'année des 15 ans de l'enfant : commence avant 15 ans. Si l'enfant ne fait pas d'études postsecondaires, les subventions sont remboursées.</p><p>C'est une estimation à titre indicatif, pas un conseil personnalisé. Le chiffre officiel est celui de l'ARC, de Service Canada ou de Revenu Québec.</p></div>
 <section class="stack"><h3>Sources (vérifiées le 24 novembre 2026)</h3><ul class="src"><li><a href="https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/regime-enregistre-epargne-etudes-reee/programmes-canadiens-epargne-etudes-pcee/subvention-canadienne-epargne-etudes-scee.html">ARC – Subvention canadienne pour l&#x27;épargne-études (SCEE)</a></li><li><a href="https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/incitatif-quebecois-a-lepargne-etudes/">Revenu Québec – Incitatif québécois à l&#x27;épargne-études</a></li><li><a href="https://cffp.recherche.usherbrooke.ca/outils-ressources/guide-mesures-fiscales/regime-enregistre-epargne-etudes/">Chaire en fiscalité et en finances publiques (Université de Sherbrooke) – REEE, paramètres 2026</a></li></ul></section>
 <nav class="pager"><a class="btn" href="../outils.html">← Tous les outils</a></nav>
-<script>const $=n=>n.toLocaleString('fr-CA',{maximumFractionDigits:0})+' $';const $2=n=>n.toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';const v=id=>Number(document.getElementById(id).value)||0;function calc(){const a0=Math.min(17,Math.max(0,v('age'))),c=v('cot'),r=v('rev'),qc=document.getElementById('qc').checked,deja=document.getElementById('deja').checked;
+<script>const $=n=>n.toLocaleString('fr-CA',{maximumFractionDigits:0})+' $';const $2=n=>n.toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';const v=id=>Number(document.getElementById(id).value)||0;/* Mashi Moushkil · moteur d'impôt simplifié 2026 (Québec et Ontario), une personne seule, revenus d'emploi.
+   Paramètres vérifiés le 24 novembre 2026 : ARC, Revenu Québec, Retraite Québec, EDSC, RCGT (tables 2026). */
+const P26={
+ fed:{br:[[58523,.14],[117045,.205],[181440,.26],[258482,.29],[Infinity,.33]],cr:.14,bpaMax:16452,bpaMin:14829,bpaA:181440,bpaB:258482,emp:1501,abQC:.165},
+ qc:{br:[[54345,.14],[108680,.19],[132245,.24],[Infinity,.2575]],cr:.14,bpa:18952,workMax:1450,workRate:.06},
+ on:{br:[[53891,.0505],[107785,.0915],[150000,.1116],[220000,.1216],[Infinity,.1316]],cr:.0505,bpa:12989,s1:5818,s2:7446},
+ cpp:{max:74600,ex:3500,base:.0495,add1:.01,max2:85000,r2:.04},
+ qpp:{max:74600,ex:3500,base:.053,add1:.01,max2:85000,r2:.04},
+ ei:{max:68900,on:.0163,qc:.013},qpip:{max:103000,r:.0043}
+};
+function bracketTax(x,br){let t=0,lo=0;for(const[hi,r]of br){if(x>lo)t+=(Math.min(x,hi)-lo)*r;lo=hi}return t}
+function ohp(x){if(x<=20000)return 0;if(x<=25000)return .06*(x-20000);if(x<=36000)return 300;if(x<=38500)return 300+.06*(x-36000);if(x<=48000)return 450;
+ if(x<=48600)return 450+.25*(x-48000);if(x<=72000)return 600;if(x<=72600)return 600+.25*(x-72000);if(x<=200000)return 750;if(x<=200600)return 750+.25*(x-200000);return 900}
+/* prov : 'qc' ou 'on' ; emploi : revenu d'emploi brut ; autre : autres revenus imposables (retraite, etc.) ; reer : cotisation REER déduite */
+function impot(prov,emploi,autre=0,reer=0){
+ const Q=prov==='qc',R=Q?P26.qpp:P26.cpp,pens=Math.max(0,Math.min(emploi,R.max)-R.ex);
+ const rBase=R.base*pens,rAdd=R.add1*pens,r2=R.r2*Math.max(0,Math.min(emploi,R.max2)-R.max);
+ const ae=Math.min(emploi,P26.ei.max)*(Q?P26.ei.qc:P26.ei.on),rqap=Q?Math.min(emploi,P26.qpip.max)*P26.qpip.r:0;
+ const net=Math.max(0,emploi+autre-rAdd-r2-reer);
+ const F=P26.fed,bpa=net<=F.bpaA?F.bpaMax:net>=F.bpaB?F.bpaMin:F.bpaMax-(F.bpaMax-F.bpaMin)*(net-F.bpaA)/(F.bpaB-F.bpaA);
+ let fed=Math.max(0,bracketTax(net,F.br)-F.cr*(bpa+rBase+ae+rqap+Math.min(emploi,F.emp)));
+ const abat=Q?fed*F.abQC:0;fed-=abat;
+ let prov_=0,sur=0,sante=0,trav=0;
+ if(Q){trav=Math.min(P26.qc.workMax,P26.qc.workRate*emploi);prov_=Math.max(0,bracketTax(Math.max(0,net-trav),P26.qc.br)-P26.qc.cr*P26.qc.bpa)}
+ else{const O=P26.on,b=Math.max(0,bracketTax(net,O.br)-O.cr*(O.bpa+rBase+ae));sur=.2*Math.max(0,b-O.s1)+.36*Math.max(0,b-O.s2);prov_=b+sur;sante=ohp(net)}
+ const cot=rBase+rAdd+r2+ae+rqap,total=fed+prov_+sante;
+ return{brut:emploi+autre,net,fed,abat,prov:prov_,sur,sante,trav,rBase,rAdd,r2,ae,rqap,cot,impots:total,dispo:emploi+autre-reer-cot-total};
+}
+function tauxMarginal(prov,emploi,autre=0){const a=impot(prov,emploi,autre),b=impot(prov,emploi+100,autre);return((b.impots+b.cot)-(a.impots+a.cot))/100}
+function tauxMarginalImpot(prov,emploi,autre=0){const a=impot(prov,emploi,autre),b=impot(prov,emploi,autre+100);return(b.impots-a.impots)/100}
+function remboursementReer(prov,emploi,g){return impot(prov,emploi).impots-impot(prov,emploi,0,g).impots}
+/* Hypothèque canadienne : taux composé semestriellement */
+function tauxPeriode(tauxAnnuel,parAn){return Math.pow(1+tauxAnnuel/2,2/parAn)-1}
+function paiement(capital,tauxAnnuel,ans,parAn=12){const i=tauxPeriode(tauxAnnuel,parAn),n=ans*parAn;return i===0?capital/n:capital*i/(1-Math.pow(1+i,-n))}
+function primeSCHL(prix,mise){const p=mise/prix;if(p>=.2||prix>=1500000)return 0;return(prix-mise)*(p>=.15?.028:p>=.10?.031:.04)}
+function miseMinimale(prix){return prix>=1500000?.2*prix:prix<=500000?.05*prix:25000+.1*(prix-500000)}
+/* Petits graphiques SVG sans bibliothèque, aux couleurs du site (variables CSS). */
+const KS=z=>{const a=Math.abs(z);return a>=1e6?(z/1e6).toLocaleString('fr-CA',{maximumFractionDigits:2})+' M$':a>=1e3?(z/1e3).toLocaleString('fr-CA',{maximumFractionDigits:a>=1e4?0:1})+' k$':Math.round(z)+' $'};
+function niceStep(span,k){const st=10**Math.floor(Math.log10(span/k||1));return[1,2,2.5,5,10].map(m=>m*st).find(s=>span/s<=k)||st*10}
+function chartBox(id){const el=document.getElementById(id),W=Math.max(320,el.clientWidth||640);return{el,W}}
+/* S : [{nom,coul,data:[y0,y1,...], tirets}] ; o : {xl:i=>label, pas:5, fmt, vline:{x,txt}, pts:[{x,y,txt}], cap} */
+function lineChart(id,S,o={}){const{el,W}=chartBox(id),H=W<500?250:290,l=62,r=W<500?84:110,tp=18,bt=32,n=Math.max(...S.map(s=>s.data.length))-1,f=o.fmt||KS;
+ const all=S.flatMap(s=>s.data),mn0=Math.min(0,...all),mx0=Math.max(...all,1),st=niceStep(mx0-mn0,5),mn=Math.floor(mn0/st)*st,mx=Math.ceil(mx0/st)*st;
+ const X=i=>l+(W-l-r)*i/Math.max(1,n),Y=z=>tp+(H-tp-bt)*(1-(z-mn)/(mx-mn||1));let g='';
+ for(let z=mn;z<=mx+st/2;z+=st)g+=`<line x1="${l}" x2="${W-r}" y1="${Y(z)}" y2="${Y(z)}" stroke="var(--line)"/><text x="${l-8}" y="${Y(z)+4}" text-anchor="end">${f(z)}</text>`;
+ const pas=o.pas||(n>20||W<500?Math.ceil(n/4/5)*5||1:5);for(let i=0;i<=n;i+=pas)g+=`<text x="${X(i)}" y="${H-10}" text-anchor="middle">${o.xl?o.xl(i):i}</text>`;
+ if(o.vline&&o.vline.x<=n)g+=`<line x1="${X(o.vline.x)}" x2="${X(o.vline.x)}" y1="${tp}" y2="${H-bt}" stroke="var(--muted)" stroke-dasharray="4 4"/><text x="${X(o.vline.x)+(o.vline.x>n/2?-6:6)}" y="${tp+10}" text-anchor="${o.vline.x>n/2?'end':'start'}">${o.vline.txt}</text>`;
+ const ends=S.map(s=>({s,y:Y(s.data[s.data.length-1])})).sort((a,b)=>a.y-b.y);for(let i=1;i<ends.length;i++)if(ends[i].y-ends[i-1].y<32)ends[i].y=ends[i-1].y+32;
+ for(const s of S)g+=`<polyline fill="none" stroke="${s.coul}" stroke-width="3.5" stroke-linejoin="round" ${s.tirets?'stroke-dasharray="7 5"':''} points="${s.data.map((z,i)=>X(i)+','+Y(z)).join(' ')}"/><circle cx="${X(s.data.length-1)}" cy="${Y(s.data[s.data.length-1])}" r="5" fill="${s.coul}"/>`;
+ for(const e of ends)g+=`<text x="${X(e.s.data.length-1)+10}" y="${e.y+4}" fill="${e.s.coul}" font-weight="700">${e.s.nom}</text><text x="${X(e.s.data.length-1)+10}" y="${e.y+18}" fill="${e.s.coul}">${f(e.s.data[e.s.data.length-1])}</text>`;
+ for(const p of o.pts||[])g+=`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="6" fill="var(--panel)" stroke="var(--ink)" stroke-width="2.5"/><text x="${X(p.x)+(p.x>n*.6?-10:10)}" y="${Y(p.y)-10}" text-anchor="${p.x>n*.6?'end':'start'}" fill="var(--ink)" font-weight="700">${p.txt}</text>`;
+ el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" style="font:600 12px/1 var(--body);fill:var(--muted);display:block">${g}</svg>`+(o.cap?`<figcaption style="color:var(--muted);font-size:.9rem">${o.cap}</figcaption>`:'')}
+/* Barres horizontales : items [{nom,val,coul,txt}] */
+function hBars(id,items,o={}){const{el,W}=chartBox(id),lw=Math.min(170,W*.36),rh=40,H=items.length*rh+8,mx=Math.max(...items.map(i=>Math.abs(i.val)),1),bw=W-lw-90;let g='';
+ items.forEach((it,k)=>{const y=k*rh+6,w=Math.max(2,bw*Math.abs(it.val)/mx);g+=`<text x="${lw-10}" y="${y+19}" text-anchor="end" fill="var(--ink)">${it.nom}</text><rect x="${lw}" y="${y}" width="${w}" height="26" rx="4" fill="${it.coul}"/><text x="${lw+w+8}" y="${y+18}" fill="var(--ink)" font-weight="700">${it.txt||(o.fmt||KS)(it.val)}</text>`});
+ el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" style="font:600 13px/1 var(--body);display:block">${g}</svg>`+(o.cap?`<figcaption style="color:var(--muted);font-size:.9rem">${o.cap}</figcaption>`:'')}
+/* Une barre découpée en parts : parts [{nom,val,coul}] */
+function partBar(id,parts,o={}){const{el,W}=chartBox(id),tot=parts.reduce((a,p)=>a+Math.max(0,p.val),0)||1;let x=0,g='',leg='';
+ for(const p of parts){const w=W*Math.max(0,p.val)/tot;g+=`<rect x="${x}" y="0" width="${w}" height="34" fill="${p.coul}"/>`+(w>46?`<text x="${x+w/2}" y="22" text-anchor="middle" fill="${p.txtc||'#fff'}" font-weight="700">${Math.round(100*p.val/tot)} %</text>`:'');x+=w;
+  leg+=`<span style="display:inline-flex;align-items:center;gap:6px;margin:0 14px 4px 0"><i style="width:12px;height:12px;border-radius:3px;background:${p.coul};display:inline-block"></i>${p.nom}</span>`}
+ el.innerHTML=`<svg viewBox="0 0 ${W} 34" width="100%" role="img" style="font:600 13px/1 var(--body);display:block;border-radius:6px">${g}</svg><figcaption style="font-size:.9rem;margin-top:8px">${leg}</figcaption>`}
+/* Barres verticales empilées : xs labels, S [{nom,coul,data}] */
+function stackBars(id,xs,S,o={}){const{el,W}=chartBox(id),H=W<500?230:270,l=62,r=10,tp=10,bt=30,n=xs.length,tot=xs.map((_,i)=>S.reduce((a,s)=>a+s.data[i],0)),st=niceStep(Math.max(...tot,1),5),mx=Math.ceil(Math.max(...tot,1)/st)*st;
+ const bw=(W-l-r)/n,Y=z=>tp+(H-tp-bt)*(1-z/mx);let g='';for(let z=0;z<=mx+st/2;z+=st)g+=`<line x1="${l}" x2="${W-r}" y1="${Y(z)}" y2="${Y(z)}" stroke="var(--line)"/><text x="${l-8}" y="${Y(z)+4}" text-anchor="end">${(o.fmt||KS)(z)}</text>`;
+ const pas=o.pas||Math.ceil(n/(W<500?6:12));xs.forEach((x,i)=>{let b=0;for(const s of S){const v=s.data[i];g+=`<rect x="${l+i*bw+bw*.12}" y="${Y(b+v)}" width="${bw*.76}" height="${Math.max(0,Y(b)-Y(b+v))}" fill="${s.coul}"/>`;b+=v}
+  if(i%pas===0||i===n-1)g+=`<text x="${l+i*bw+bw/2}" y="${H-10}" text-anchor="middle">${x}</text>`});
+ const leg=S.map(s=>`<span style="display:inline-flex;align-items:center;gap:6px;margin-right:14px"><i style="width:12px;height:12px;border-radius:3px;background:${s.coul};display:inline-block"></i>${s.nom}</span>`).join('');
+ el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" style="font:600 12px/1 var(--body);fill:var(--muted);display:block">${g}</svg><figcaption style="font-size:.9rem;margin-top:6px">${leg}${o.cap?`<br><span style="color:var(--muted)">${o.cap}</span>`:''}</figcaption>`}
+const L_=(...a)=>a.filter(Boolean).map(x=>'<p>'+x+'</p>').join('');function calc(){const a0=Math.min(17,Math.max(0,v('age'))),c=v('cot'),r=v('rev'),qc=document.getElementById('qc').checked,deja=document.getElementById('deja').checked;
  const addF=r<=58523?.2:r<=117045?.1:0,addQ=r<=54345?.1:r<=108680?.05:0;
- let roomF=deja?0:500*a0,roomQ=deja?0:250*a0,totF=0,totQ=0,totC=0,rows='',paid=0;
+ let CC=[],CS=[],CR=[],cr=0,roomF=deja?0:500*a0,roomQ=deja?0:250*a0,totF=0,totQ=0,totC=0,rows='',paid=0;
  for(let a=a0;a<=17;a++){roomF+=500;roomQ+=250;
   let g=0,q=0;const late=a>=16&&!(deja||paid>=2000||a0<=11);
   if(!late){g=Math.min(.2*c,roomF,1000);roomF-=g;g+=Math.min(c,500)*addF;g=Math.min(g,7200-totF)}
   if(qc){q=Math.min(.1*c,roomQ,500);roomQ-=q;q+=Math.min(c,500)*addQ;q=Math.min(q,3600-totQ)}
-  totF+=g;totQ+=q;totC+=c;paid+=c;
+  totF+=g;totQ+=q;totC+=c;paid+=c;cr=(cr+c+g+q)*1.05;CC.push(totC);CS.push(totC+totF+totQ);CR.push(cr);
   rows+=`<tr><td>${a} an${a>1?'s':''}</td><td>${$(c)}</td><td>${$(g)}</td><td>${qc?$(q):'—'}</td></tr>`}
  document.getElementById('r').textContent=$(totF+totQ);
+ lineChart('g',[{nom:'Avec un rendement de 5 %',coul:'var(--muted)',data:CR,tirets:1},{nom:'Cotisations + subventions',coul:'var(--red)',data:CS},{nom:'Tes cotisations',coul:'var(--ink)',data:CC}],{xl:i=>(a0+i)+' ans',pas:a0>12?1:3,cap:'Montant accumulé dans le REEE, selon l\'âge de l\'enfant.'});
+ document.getElementById('lec').innerHTML=L_(totC?`Les subventions ajoutent <strong>${Math.round(100*(totF+totQ)/totC)} %</strong> à tes cotisations : un rendement garanti difficile à battre ailleurs.`:'',
+  c<2500?`À ${$(c)} par année, tu laisses de l'argent sur la table : c'est à 2 500 $ par année qu'on va chercher le maximum annuel de la SCEE (500 $).`:c>2500&&!deja&&a0>0?`Au-delà de 2 500 $ par année, la partie en plus va chercher les subventions des années passées (jusqu'à 1 000 $ de SCEE par année), jusqu'à ce que le retard soit rattrapé.`:c>2500?'Au-delà de 2 500 $ par année, la partie en plus ne donne pas de subvention de base supplémentaire (sauf rattrapage d\'années passées).':'',
+  totF>=7199?'Tu atteins le maximum à vie de la SCEE (7 200 $).':'',
+  addF?'Ton revenu familial donne aussi droit à un montant supplémentaire sur la première tranche de 500 $.':'',
+  a0>=15?'À cet âge, vérifie les règles des 16 et 17 ans : sans cotisations avant la fin de l\'année des 15 ans, la SCEE n\'est plus versée.':'');
  document.getElementById('tb').innerHTML=rows;
  document.getElementById('kv').innerHTML=`<span>Tes cotisations</span><span>${$(totC)}</span><span>SCEE (fédéral)</span><span>${$(totF)}</span>`+(qc?`<span>IQEE (Québec)</span><span>${$(totQ)}</span>`:'')+`<span class=tot>Total dans le REEE, sans rendement</span><span class=tot>${$(totC+totF+totQ)}</span>`;}
-document.getElementById('f').addEventListener('input',calc);calc();</script></main>
+document.getElementById('f').addEventListener('input',calc);calc();let _rt;addEventListener('resize',()=>{clearTimeout(_rt);_rt=setTimeout(calc,150)});</script></main>
 <footer class="site"><div class="wrap"><p><strong style="color:var(--ink)">Information générale seulement.</strong> Rien sur ce site n'est un conseil financier, fiscal ou juridique personnalisé. Les règles et les montants changent : vérifie toujours la source officielle. Recherche assistée par IA, chaque chiffre vérifié avant publication.</p>
 <div class="stack" style="gap:6px"><span>Contact : <span class="mail">mmoushkil@gmail.com</span></span><span><a href="https://www.youtube.com/@mashimoushkil">YouTube</a> · <a href="https://www.instagram.com/mashimoushkil">Instagram</a> · <a href="https://www.facebook.com/profile.php?id=61596326894950">Facebook</a> · <a href="https://www.tiktok.com/@mashimoushkil">TikTok</a></span></div></div></footer></body></html>
