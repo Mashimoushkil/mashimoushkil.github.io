@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mashimoushkil.github.io/sitemap.xml
