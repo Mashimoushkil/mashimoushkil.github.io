@@ -1,0 +1,150 @@
+<!doctype html><html lang="fr-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>CELI ou REER ? Simule ton épargne · Mashi Moushkil</title><meta name="claude:viewport-fit-sides" content="cover"><meta name="description" content="Compare un CELI et un REER pour le même effort d&#x27;épargne, avec un rendement choisi, le remboursement d&#x27;impôt du REER et l&#x27;impôt au retrait, au Québec ou en Ontario."><meta property="og:title" content="CELI ou REER ? Simule ton épargne · Mashi Moushkil"><meta property="og:description" content="Compare un CELI et un REER pour le même effort d&#x27;épargne, avec un rendement choisi, le remboursement d&#x27;impôt du REER et l&#x27;impôt au retrait, au Québec ou en Ontario."><meta property="og:image" content="https://mashimoushkil.github.io/img/partage.jpg"><meta property="og:url" content="https://mashimoushkil.github.io/outils/celi-ou-reer.html"><meta property="og:type" content="website"><meta property="og:locale" content="fr_CA"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://mashimoushkil.github.io/outils/celi-ou-reer.html"><link rel="icon" href="../img/logo.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Metal+Mania&family=Oswald:wght@500;600;700&family=Patrick+Hand&display=swap"><style>
+/* Panneaux de manga sur papier : bordures d'encre épaisses, ombre décalée, rouge en accent unique */
+:root{--paper:#F4F1EA;--panel:#FFFFFF;--ink:#141414;--muted:#5C574F;--line:#D8D2C6;--red:#C8102E;--amber:#E3A21A;--on-red:#FFFFFF;
+--display:"Oswald","Arial Narrow",Arial,sans-serif;--brand:"Metal Mania","Oswald",serif;--body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--hand:"Patrick Hand","Comic Sans MS",cursive}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#121212;--panel:#1C1C1C;--ink:#ECE7DC;--muted:#ABA497;--line:#34322E;--red:#E5485E;--amber:#F0B43A;--on-red:#FFFFFF;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#121212;--panel:#1C1C1C;--ink:#ECE7DC;--muted:#ABA497;--line:#34322E;--red:#E5485E;--amber:#F0B43A;--on-red:#FFFFFF;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--body);background-image:radial-gradient(var(--line) 1px,transparent 1.2px);background-size:18px 18px}
+a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.site{border-bottom:3px solid var(--ink);background:var(--paper)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:52px;height:52px;border-radius:50%;border:2px solid var(--ink)}
+.brand b{display:block;font:400 1.75rem/1 var(--brand)}
+.brand small{display:block;font:700 .72rem/1.3 var(--display);letter-spacing:.12em;color:var(--red);text-transform:uppercase}
+nav.main{display:flex;flex-wrap:wrap;gap:4px 18px}
+nav.main a{font:600 .95rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:6px 0;border-bottom:3px solid transparent}
+nav.main a:hover,nav.main a[aria-current]{border-color:var(--red)}
+main{padding-block:28px 56px;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);text-transform:uppercase}
+h2{font-size:clamp(1.5rem,3.4vw,2.1rem);text-transform:uppercase}
+h3{font-size:1.25rem}
+p{margin:0;max-width:66ch}
+.chip{display:inline-block;align-self:flex-start;font:700 .78rem/1 var(--display);letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 10px;border-radius:4px}
+.chip.red{background:var(--red);color:var(--on-red)}.chip.line{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.hand{font-family:var(--hand);font-size:1.45rem;line-height:1.3;color:var(--red)}
+.panel{background:var(--panel);border:3px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--ink);padding:22px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:center}
+.hero .ribbon{display:inline-block;background:var(--red);color:var(--on-red);font:700 clamp(.95rem,2.4vw,1.25rem)/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;border-radius:6px;transform:rotate(-1.5deg);justify-self:start}
+.hero img{width:100%;max-width:340px;aspect-ratio:1;border-radius:50%;border:4px solid var(--ink);justify-self:center;box-shadow:8px 8px 0 var(--red)}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 .95rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:12px 16px;border:3px solid var(--ink);border-radius:8px;background:var(--panel);box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn.primary{background:var(--red);color:var(--on-red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:22px}
+.rub{display:flex;flex-direction:column;gap:8px;text-decoration:none}
+.rub .n{font:700 .8rem/1 var(--display);letter-spacing:.12em;color:var(--red)}
+.rub p{color:var(--muted);font-size:.98rem}
+.rub:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--ink)}
+.rules{counter-reset:r;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:18px;list-style:none;margin:0;padding:0}
+.rules li{counter-increment:r;border-top:3px solid var(--ink);padding-top:10px}
+.rules li::before{content:"Règle " counter(r);display:block;font:700 .78rem/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.myth{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:3px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--panel)}
+.myth>div{padding:18px}.myth>div:first-child{border-right:3px solid var(--ink)}
+.myth .q{font-family:var(--hand);font-size:1.35rem;line-height:1.3}
+.tbl{overflow-x:auto;border:3px solid var(--ink);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+th{font:700 .85rem/1.2 var(--display);letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper)}
+tr:last-child td{border-bottom:0}
+.prog{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.prog li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.prog li span.t{flex:1;min-width:0}
+.prog .soon{font:600 .8rem/1 var(--display);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.note{border-left:6px solid var(--amber);padding:12px 16px;background:var(--panel);border-radius:0 8px 8px 0}
+.measure{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+.measure .k{font:700 2.4rem/1 var(--display);color:var(--red);font-variant-numeric:tabular-nums}
+.pager{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+ul.src{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:.95rem}
+footer.site{border-top:3px solid var(--ink);background:var(--panel)}
+footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;padding-block:24px;font-size:.92rem;color:var(--muted)}
+footer.site p{max-width:60ch}
+.mail{font-family:var(--body);user-select:all;color:var(--ink);font-weight:600}
+@media (max-width:720px){.hero{grid-template-columns:1fr}.hero img{max-width:220px;order:-1}.myth{grid-template-columns:1fr}.myth>div:first-child{border-right:0;border-bottom:3px solid var(--ink)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><header class="site"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/logo.jpg" alt=""><span><b>Mashi Moushkil</b><small>Pas de problème · on t'explique tout</small></span></a><nav class="main" aria-label="Navigation principale"><a href="../index.html#rubriques">Rubriques</a><a href="../actualite/budget-federal-2026.html">Actualité</a><a href="../outils.html" aria-current=page>Outils</a><a href="../a-propos.html">À propos</a></nav></div></header>
+<main class="wrap"><style>
+.tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
+@media (max-width:820px){.tool{grid-template-columns:1fr}}
+form.panel label{display:flex;flex-direction:column;gap:6px;font:600 .95rem/1.3 var(--body)}
+form.panel label small{font-weight:400;color:var(--muted)}
+form.panel input,form.panel select{font:500 1.05rem/1.2 var(--body);padding:10px 12px;border:2px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink);width:100%;font-variant-numeric:tabular-nums}
+form.panel .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:480px){form.panel .row{grid-template-columns:1fr}}
+.check{flex-direction:row!important;align-items:center}
+.check input{width:auto!important}
+.big{font:700 clamp(2.2rem,6vw,3.2rem)/1 var(--display);color:var(--red);font-variant-numeric:tabular-nums}
+.kv{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;font-variant-numeric:tabular-nums}
+.kv span:nth-child(even){text-align:right;font-weight:700}
+.kv .tot{border-top:2px solid var(--ink);padding-top:6px}
+details summary{cursor:pointer;font:700 .95rem/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase}
+.tbl table{min-width:0}.tbl td,.tbl th{padding:8px 10px;font-variant-numeric:tabular-nums}
+.warn{border-left:6px solid var(--red);padding:10px 14px;background:var(--panel);border-radius:0 8px 8px 0}
+</style>
+<section class="stack"><span class="chip red">Outil · information générale</span><h1>CELI ou REER ? Simule ton épargne</h1><p>La vraie question n'est pas « lequel rapporte le plus », mais « quel est mon taux d'impôt aujourd'hui, et quel sera-t-il au retrait ». L'outil compare les deux pour le même effort : ce qui sort vraiment de ta poche chaque année.</p></section>
+<section class="tool"><form class="panel stack" id="f" onsubmit="event.preventDefault()"><label>Province<select id="prov"><option value="qc">Québec</option><option value="on">Ontario</option></select></label><label>Salaire brut annuel aujourd'hui<input id="brut" type="number" min="0" step="1000" value="70000" inputmode="numeric"></label>
+<label>Effort d'épargne par année<input id="eff" type="number" min="0" step="500" value="5000" inputmode="numeric"><small>Dans le REER, on y ajoute le remboursement d'impôt, réinvesti.</small></label>
+<div class="row"><label>Rendement annuel moyen (%)<input id="taux" type="number" min="0" max="15" step="0.25" value="5" inputmode="decimal"></label>
+<label>Nombre d'années<input id="ans" type="number" min="1" max="45" value="25" inputmode="numeric"></label></div>
+<label>Revenu imposable prévu à la retraite, par année<input id="ret" type="number" min="0" step="1000" value="45000" inputmode="numeric"><small>Rentes, pensions et autres revenus, en dollars d'aujourd'hui. Sert à estimer l'impôt sur les retraits du REER.</small></label></form><div class="panel stack" id="out" aria-live="polite"><p id="verdict" class="big" style="font-size:clamp(1.5rem,4vw,2rem);line-height:1.15"></p><div class="kv" id="kv"></div><div class="kv" id="kv2"></div><p id="note" style="color:var(--red);font-weight:700;margin:0"></p><details><summary>Évolution année par année</summary><div class="tbl"><table><thead><tr><th>Année</th><th>CELI</th><th>REER avant impôt</th><th>REER après impôt</th></tr></thead><tbody id="tb"></tbody></table></div></details></div></section>
+<section class="stack"><h2>Comment c'est calculé</h2><p><strong>CELI :</strong> tu déposes ton effort d'épargne chaque année. Tout ce qui sort, rendement compris, est libre d'impôt.</p>
+<p><strong>REER :</strong> pour le même effort, tu peux déposer plus, parce que la cotisation te donne un remboursement d'impôt. L'outil cherche le dépôt qui, une fois le remboursement réinvesti, te coûte exactement ton effort d'épargne. Au retrait, tout est imposable : l'outil applique ton taux marginal d'impôt à la retraite, calculé avec le revenu que tu as indiqué.</p>
+<p><strong>La règle simple :</strong> si ton taux d'impôt au retrait est plus bas qu'aujourd'hui, le REER gagne. S'il est plus haut, le CELI gagne. S'ils sont égaux, c'est pareil. Le rendement et la durée grossissent l'écart, mais ne changent pas le gagnant.</p>
+<p>Les montants sont en dollars d'aujourd'hui : pour un ordre de grandeur réaliste, utilise un rendement après inflation (par exemple 3 % à 4 % pour un portefeuille équilibré).</p></section>
+<div class="warn stack"><strong>Limites de l'outil</strong><p>Paramètres fiscaux de 2026, gardés constants. L'outil ne tient pas compte de la récupération de la pension de la Sécurité de la vieillesse et du Supplément de revenu garanti (les retraits du REER peuvent les réduire, pas ceux du CELI), du fractionnement du revenu de pension, du crédit pour revenu de pension, des retraits pour l'achat d'une maison (RAP, CELIAPP) ni de l'impôt retenu à la source au moment du retrait. Les droits de cotisation (7 000 $ par année au CELI, 18 % du revenu au REER) sont signalés, pas bloqués.</p><p>Souvent, la meilleure réponse est « les deux » : le REER quand ton taux d'impôt est élevé, le CELI pour la souplesse.</p><p>C'est une estimation à titre indicatif, pas un conseil personnalisé. Le chiffre officiel est celui de l'ARC, de Service Canada ou de Revenu Québec.</p></div>
+<section class="stack"><h3>Sources (vérifiées le 24 novembre 2026)</h3><ul class="src"><li><a href="https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/taux-imposition-tranches-revenu/annee-en-cours.html">ARC – Taux d&#x27;imposition fédéraux de l&#x27;année en cours</a></li><li><a href="https://www.revenuquebec.ca/fr/citoyens/declaration-de-revenus/produire-votre-declaration-de-revenus/taux-dimposition/">Revenu Québec – Taux d&#x27;imposition</a></li><li><a href="https://www.rcgt.com/contentassets/5142f7cf936d42d7aa7666314c21ccd1/impot-des-particuliers---quebec---2026.pdf">Raymond Chabot Grant Thornton – Impôt des particuliers, Québec 2026</a></li><li><a href="https://www.bdo.ca/getmedia/38576747-b3b6-4943-ac38-723768e3e2f8/Renseignements-fiscaux-2026.pdf">BDO – Renseignements fiscaux 2026 (taux fédéraux et provinciaux)</a></li><li><a href="https://www.canada.ca/fr/agence-revenu/services/impot/administrateurs-regimes-enregistres/fesp/plafonds-cd-reer-rpdb-celi-mgap.html">ARC – Plafonds des REER, des CELI et autres régimes</a></li></ul></section>
+<nav class="pager"><a class="btn" href="../outils.html">← Tous les outils</a></nav>
+<script>const $=n=>n.toLocaleString('fr-CA',{maximumFractionDigits:0})+' $';const $2=n=>n.toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';const v=id=>Number(document.getElementById(id).value)||0;/* Mashi Moushkil · moteur d'impôt simplifié 2026 (Québec et Ontario), une personne seule, revenus d'emploi.
+   Paramètres vérifiés le 24 novembre 2026 : ARC, Revenu Québec, Retraite Québec, EDSC, RCGT (tables 2026). */
+const P26={
+ fed:{br:[[58523,.14],[117045,.205],[181440,.26],[258482,.29],[Infinity,.33]],cr:.14,bpaMax:16452,bpaMin:14829,bpaA:181440,bpaB:258482,emp:1501,abQC:.165},
+ qc:{br:[[54345,.14],[108680,.19],[132245,.24],[Infinity,.2575]],cr:.14,bpa:18952,workMax:1450,workRate:.06},
+ on:{br:[[53891,.0505],[107785,.0915],[150000,.1116],[220000,.1216],[Infinity,.1316]],cr:.0505,bpa:12989,s1:5818,s2:7446},
+ cpp:{max:74600,ex:3500,base:.0495,add1:.01,max2:85000,r2:.04},
+ qpp:{max:74600,ex:3500,base:.053,add1:.01,max2:85000,r2:.04},
+ ei:{max:68900,on:.0163,qc:.013},qpip:{max:103000,r:.0043}
+};
+function bracketTax(x,br){let t=0,lo=0;for(const[hi,r]of br){if(x>lo)t+=(Math.min(x,hi)-lo)*r;lo=hi}return t}
+function ohp(x){if(x<=20000)return 0;if(x<=25000)return .06*(x-20000);if(x<=36000)return 300;if(x<=38500)return 300+.06*(x-36000);if(x<=48000)return 450;
+ if(x<=48600)return 450+.25*(x-48000);if(x<=72000)return 600;if(x<=72600)return 600+.25*(x-72000);if(x<=200000)return 750;if(x<=200600)return 750+.25*(x-200000);return 900}
+/* prov : 'qc' ou 'on' ; emploi : revenu d'emploi brut ; autre : autres revenus imposables (retraite, etc.) ; reer : cotisation REER déduite */
+function impot(prov,emploi,autre=0,reer=0){
+ const Q=prov==='qc',R=Q?P26.qpp:P26.cpp,pens=Math.max(0,Math.min(emploi,R.max)-R.ex);
+ const rBase=R.base*pens,rAdd=R.add1*pens,r2=R.r2*Math.max(0,Math.min(emploi,R.max2)-R.max);
+ const ae=Math.min(emploi,P26.ei.max)*(Q?P26.ei.qc:P26.ei.on),rqap=Q?Math.min(emploi,P26.qpip.max)*P26.qpip.r:0;
+ const net=Math.max(0,emploi+autre-rAdd-r2-reer);
+ const F=P26.fed,bpa=net<=F.bpaA?F.bpaMax:net>=F.bpaB?F.bpaMin:F.bpaMax-(F.bpaMax-F.bpaMin)*(net-F.bpaA)/(F.bpaB-F.bpaA);
+ let fed=Math.max(0,bracketTax(net,F.br)-F.cr*(bpa+rBase+ae+rqap+Math.min(emploi,F.emp)));
+ const abat=Q?fed*F.abQC:0;fed-=abat;
+ let prov_=0,sur=0,sante=0,trav=0;
+ if(Q){trav=Math.min(P26.qc.workMax,P26.qc.workRate*emploi);prov_=Math.max(0,bracketTax(Math.max(0,net-trav),P26.qc.br)-P26.qc.cr*P26.qc.bpa)}
+ else{const O=P26.on,b=Math.max(0,bracketTax(net,O.br)-O.cr*(O.bpa+rBase+ae));sur=.2*Math.max(0,b-O.s1)+.36*Math.max(0,b-O.s2);prov_=b+sur;sante=ohp(net)}
+ const cot=rBase+rAdd+r2+ae+rqap,total=fed+prov_+sante;
+ return{brut:emploi+autre,net,fed,abat,prov:prov_,sur,sante,trav,rBase,rAdd,r2,ae,rqap,cot,impots:total,dispo:emploi+autre-reer-cot-total};
+}
+function tauxMarginal(prov,emploi,autre=0){const a=impot(prov,emploi,autre),b=impot(prov,emploi+100,autre);return((b.impots+b.cot)-(a.impots+a.cot))/100}
+function tauxMarginalImpot(prov,emploi,autre=0){const a=impot(prov,emploi,autre),b=impot(prov,emploi,autre+100);return(b.impots-a.impots)/100}
+function remboursementReer(prov,emploi,g){return impot(prov,emploi).impots-impot(prov,emploi,0,g).impots}
+/* Hypothèque canadienne : taux composé semestriellement */
+function tauxPeriode(tauxAnnuel,parAn){return Math.pow(1+tauxAnnuel/2,2/parAn)-1}
+function paiement(capital,tauxAnnuel,ans,parAn=12){const i=tauxPeriode(tauxAnnuel,parAn),n=ans*parAn;return i===0?capital/n:capital*i/(1-Math.pow(1+i,-n))}
+function primeSCHL(prix,mise){const p=mise/prix;if(p>=.2||prix>=1500000)return 0;return(prix-mise)*(p>=.15?.028:p>=.10?.031:.04)}
+function miseMinimale(prix){return prix>=1500000?.2*prix:prix<=500000?.05*prix:25000+.1*(prix-500000)}
+const pc=x=>(x*100).toLocaleString('fr-CA',{minimumFractionDigits:1,maximumFractionDigits:1})+' %';const sel=id=>document.getElementById(id).value;const ck=id=>document.getElementById(id).checked;const $id=id=>document.getElementById(id);const nl=(a,b,k='')=>`<span${k}>${a}</span><span${k}>${b}</span>`;function calc(){const p=sel('prov'),g=v('brut'),E=v('eff'),r=v('taux')/100,n=Math.max(1,Math.min(45,Math.round(v('ans')))),ret=v('ret');
+ let G=E;for(let i=0;i<40;i++)G=E+remboursementReer(p,g,G);const remb=G-E;
+ const tNow=G?remb/G:0,tRet=tauxMarginalImpot(p,0,ret);
+ let c=0,s=0,rows='';for(let y=1;y<=n;y++){c=(c+E)*(1+r);s=(s+G)*(1+r);rows+=`<tr><td>${y}</td><td>${$(c)}</td><td>${$(s)}</td><td>${$(s*(1-tRet))}</td></tr>`}
+ const sn=s*(1-tRet),d=sn-c;
+ $id('verdict').textContent=Math.abs(d)<Math.max(50,.005*c)?'Pratiquement égalité':d>0?`REER : + ${$(d)}`:`CELI : + ${$(-d)}`;
+ $id('kv').innerHTML=nl('Dépôt annuel au CELI',$(E))+nl('Dépôt annuel au REER (effort + remboursement)',$(G))+nl("Remboursement d'impôt par année",$(remb))+nl("Taux d'impôt économisé aujourd'hui",pc(tNow))+nl("Taux d'impôt estimé au retrait",pc(tRet));
+ $id('kv2').innerHTML=nl(`CELI après ${n} ans (libre d'impôt)`,$(c),' class=tot')+nl(`REER après ${n} ans, avant impôt`,$(s))+nl("REER après l'impôt au retrait",$(sn),' class=tot')+`<span style="grid-column:1/-1;color:var(--muted)">${d>0?"Ton taux d'impôt au retrait est plus bas qu'aujourd'hui : le REER garde l'avantage.":Math.abs(d)<Math.max(50,.005*c)?"Ton taux d'impôt est à peu près le même aujourd'hui et au retrait.":"Ton taux d'impôt au retrait serait plus élevé qu'aujourd'hui : le CELI garde l'avantage."}</span>`;
+ const w=[];if(E>7000)w.push(`Ton effort dépasse les 7 000 $ de nouveaux droits CELI par année : vérifie tes droits accumulés.`);const lim=Math.min(.18*g,33810);if(G>lim)w.push(`Un dépôt REER de ${$(G)} dépasse 18 % de ton salaire (${$(lim)}) : il te faudrait des droits inutilisés.`);
+ $id('note').innerHTML=w.join('<br>');$id('tb').innerHTML=rows;}
+document.getElementById('f').addEventListener('input',calc);calc();</script></main>
+<footer class="site"><div class="wrap"><p><strong style="color:var(--ink)">Information générale seulement.</strong> Rien sur ce site n'est un conseil financier, fiscal ou juridique personnalisé. Les règles et les montants changent : vérifie toujours la source officielle. Recherche assistée par IA, chaque chiffre vérifié avant publication.</p>
+<div class="stack" style="gap:6px"><span>Contact : <span class="mail">mmoushkil@gmail.com</span></span><span><a href="https://www.youtube.com/@mashimoushkil">YouTube</a> · <a href="https://www.instagram.com/mashimoushkil">Instagram</a> · <a href="https://www.facebook.com/profile.php?id=61596326894950">Facebook</a> · <a href="https://www.tiktok.com/@mashimoushkil">TikTok</a></span></div></div></footer></body></html>
