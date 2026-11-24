@@ -1,0 +1,110 @@
+<!doctype html><html lang="fr-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Tes droits de cotisation au CELI · Mashi Moushkil</title><meta name="claude:viewport-fit-sides" content="cover"><meta name="description" content="Estime tes droits de cotisation au CELI pour 2026 selon ton année de naissance, ton arrivée au Canada, tes cotisations et tes retraits."><meta property="og:title" content="Tes droits de cotisation au CELI · Mashi Moushkil"><meta property="og:description" content="Estime tes droits de cotisation au CELI pour 2026 selon ton année de naissance, ton arrivée au Canada, tes cotisations et tes retraits."><meta property="og:image" content="https://mashimoushkil.github.io/img/partage.jpg"><meta property="og:url" content="https://mashimoushkil.github.io/outils/droits-celi.html"><meta property="og:type" content="website"><meta property="og:locale" content="fr_CA"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://mashimoushkil.github.io/outils/droits-celi.html"><link rel="icon" href="../img/logo.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Metal+Mania&family=Oswald:wght@500;600;700&family=Patrick+Hand&display=swap"><style>
+/* Panneaux de manga sur papier : bordures d'encre épaisses, ombre décalée, rouge en accent unique */
+:root{--paper:#F4F1EA;--panel:#FFFFFF;--ink:#141414;--muted:#5C574F;--line:#D8D2C6;--red:#C8102E;--amber:#E3A21A;--on-red:#FFFFFF;
+--display:"Oswald","Arial Narrow",Arial,sans-serif;--brand:"Metal Mania","Oswald",serif;--body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--hand:"Patrick Hand","Comic Sans MS",cursive}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#121212;--panel:#1C1C1C;--ink:#ECE7DC;--muted:#ABA497;--line:#34322E;--red:#E5485E;--amber:#F0B43A;--on-red:#FFFFFF;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#121212;--panel:#1C1C1C;--ink:#ECE7DC;--muted:#ABA497;--line:#34322E;--red:#E5485E;--amber:#F0B43A;--on-red:#FFFFFF;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--body);background-image:radial-gradient(var(--line) 1px,transparent 1.2px);background-size:18px 18px}
+a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.site{border-bottom:3px solid var(--ink);background:var(--paper)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:52px;height:52px;border-radius:50%;border:2px solid var(--ink)}
+.brand b{display:block;font:400 1.75rem/1 var(--brand)}
+.brand small{display:block;font:700 .72rem/1.3 var(--display);letter-spacing:.12em;color:var(--red);text-transform:uppercase}
+nav.main{display:flex;flex-wrap:wrap;gap:4px 18px}
+nav.main a{font:600 .95rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:6px 0;border-bottom:3px solid transparent}
+nav.main a:hover,nav.main a[aria-current]{border-color:var(--red)}
+main{padding-block:28px 56px;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);text-transform:uppercase}
+h2{font-size:clamp(1.5rem,3.4vw,2.1rem);text-transform:uppercase}
+h3{font-size:1.25rem}
+p{margin:0;max-width:66ch}
+.chip{display:inline-block;align-self:flex-start;font:700 .78rem/1 var(--display);letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 10px;border-radius:4px}
+.chip.red{background:var(--red);color:var(--on-red)}.chip.line{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.hand{font-family:var(--hand);font-size:1.45rem;line-height:1.3;color:var(--red)}
+.panel{background:var(--panel);border:3px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--ink);padding:22px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:center}
+.hero .ribbon{display:inline-block;background:var(--red);color:var(--on-red);font:700 clamp(.95rem,2.4vw,1.25rem)/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;border-radius:6px;transform:rotate(-1.5deg);justify-self:start}
+.hero img{width:100%;max-width:340px;aspect-ratio:1;border-radius:50%;border:4px solid var(--ink);justify-self:center;box-shadow:8px 8px 0 var(--red)}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 .95rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:12px 16px;border:3px solid var(--ink);border-radius:8px;background:var(--panel);box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn.primary{background:var(--red);color:var(--on-red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:22px}
+.rub{display:flex;flex-direction:column;gap:8px;text-decoration:none}
+.rub .n{font:700 .8rem/1 var(--display);letter-spacing:.12em;color:var(--red)}
+.rub p{color:var(--muted);font-size:.98rem}
+.rub:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--ink)}
+.rules{counter-reset:r;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:18px;list-style:none;margin:0;padding:0}
+.rules li{counter-increment:r;border-top:3px solid var(--ink);padding-top:10px}
+.rules li::before{content:"Règle " counter(r);display:block;font:700 .78rem/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.myth{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:3px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--panel)}
+.myth>div{padding:18px}.myth>div:first-child{border-right:3px solid var(--ink)}
+.myth .q{font-family:var(--hand);font-size:1.35rem;line-height:1.3}
+.tbl{overflow-x:auto;border:3px solid var(--ink);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+th{font:700 .85rem/1.2 var(--display);letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper)}
+tr:last-child td{border-bottom:0}
+.prog{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.prog li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.prog li span.t{flex:1;min-width:0}
+.prog .soon{font:600 .8rem/1 var(--display);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.note{border-left:6px solid var(--amber);padding:12px 16px;background:var(--panel);border-radius:0 8px 8px 0}
+.measure{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+.measure .k{font:700 2.4rem/1 var(--display);color:var(--red);font-variant-numeric:tabular-nums}
+.pager{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+ul.src{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:.95rem}
+footer.site{border-top:3px solid var(--ink);background:var(--panel)}
+footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;padding-block:24px;font-size:.92rem;color:var(--muted)}
+footer.site p{max-width:60ch}
+.mail{font-family:var(--body);user-select:all;color:var(--ink);font-weight:600}
+@media (max-width:720px){.hero{grid-template-columns:1fr}.hero img{max-width:220px;order:-1}.myth{grid-template-columns:1fr}.myth>div:first-child{border-right:0;border-bottom:3px solid var(--ink)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><header class="site"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/logo.jpg" alt=""><span><b>Mashi Moushkil</b><small>Pas de problème · on t'explique tout</small></span></a><nav class="main" aria-label="Navigation principale"><a href="../index.html#rubriques">Rubriques</a><a href="../actualite/budget-federal-2026.html">Actualité</a><a href="../outils.html" aria-current=page>Outils</a><a href="../a-propos.html">À propos</a></nav></div></header>
+<main class="wrap"><style>
+.tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
+@media (max-width:820px){.tool{grid-template-columns:1fr}}
+form.panel label{display:flex;flex-direction:column;gap:6px;font:600 .95rem/1.3 var(--body)}
+form.panel label small{font-weight:400;color:var(--muted)}
+form.panel input,form.panel select{font:500 1.05rem/1.2 var(--body);padding:10px 12px;border:2px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink);width:100%;font-variant-numeric:tabular-nums}
+form.panel .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:480px){form.panel .row{grid-template-columns:1fr}}
+.check{flex-direction:row!important;align-items:center}
+.check input{width:auto!important}
+.big{font:700 clamp(2.2rem,6vw,3.2rem)/1 var(--display);color:var(--red);font-variant-numeric:tabular-nums}
+.kv{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;font-variant-numeric:tabular-nums}
+.kv span:nth-child(even){text-align:right;font-weight:700}
+.kv .tot{border-top:2px solid var(--ink);padding-top:6px}
+details summary{cursor:pointer;font:700 .95rem/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase}
+.tbl table{min-width:0}.tbl td,.tbl th{padding:8px 10px;font-variant-numeric:tabular-nums}
+.warn{border-left:6px solid var(--red);padding:10px 14px;background:var(--panel);border-radius:0 8px 8px 0}
+</style>
+<section class="stack"><span class="chip red">Outil · information générale</span><h1>Tes droits de cotisation au CELI</h1><p>Les droits au CELI s'accumulent chaque année à partir de tes 18 ans, pour chaque année où tu es résident du Canada, même si tu n'as jamais ouvert de compte. Les retraits te sont redonnés le 1<sup>er</sup> janvier suivant.</p></section>
+<section class="tool"><form class="panel stack" id="f" onsubmit="event.preventDefault()"><label>Année de naissance<input id="nais" type="number" min="1920" max="2008" value="1990" inputmode="numeric"></label>
+<label class="check"><input id="tjrs" type="checkbox" checked> J'ai toujours été résident du Canada (depuis 2009 ou mes 18 ans)</label>
+<label id="lres">Année où tu es devenu résident du Canada<input id="res" type="number" min="1950" max="2026" value="2020" inputmode="numeric"><small>Une année compte en entier, même si tu es arrivé en décembre.</small></label>
+<label>Total de tes cotisations au CELI depuis le début<input id="cot" type="number" min="0" step="100" value="20000" inputmode="numeric"></label>
+<div class="row"><label>Retraits faits avant 2026<input id="ret" type="number" min="0" step="100" value="5000" inputmode="numeric"></label>
+<label>Retraits faits en 2026<input id="ret26" type="number" min="0" step="100" value="0" inputmode="numeric"><small>Redonnés en 2027.</small></label></div></form><div class="panel stack" id="out" aria-live="polite"><p>Droits disponibles estimés en 2026</p><div class="big" id="r"></div><div class="kv" id="kv"></div><details><summary>Détail par année</summary><div class="tbl"><table><thead><tr><th>Année</th><th>Plafond</th></tr></thead><tbody id="tb"></tbody></table></div></details></div></section>
+<section class="stack"><h2>Comment c'est calculé</h2><p>Droits disponibles = somme des plafonds annuels depuis l'année où tu as eu 18 ans (ou 2009, ou ton arrivée au Canada) − tes cotisations + tes retraits des années précédentes. Les retraits de l'année en cours ne reviennent que l'année suivante.</p></section>
+<div class="warn stack"><strong>Limites de l'outil</strong><p>L'outil suppose que tu as été résident chaque année depuis ton arrivée et que tu as un numéro d'assurance sociale. Il ne gère pas les cotisations excédentaires, les transferts directs entre institutions (qui ne comptent pas comme retraits) ni les années passées à l'étranger après ton arrivée.</p><p>Ton solde officiel est dans Mon dossier de l'ARC.</p><p>C'est une estimation à titre indicatif, pas un conseil personnalisé. Le chiffre officiel est celui de l'ARC, de Service Canada ou de Revenu Québec.</p></div>
+<section class="stack"><h3>Sources (vérifiées le 24 novembre 2026)</h3><ul class="src"><li><a href="https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/compte-epargne-libre-impot/cotiser/calculer-droits.html">ARC – Calculer vos droits de cotisation au CELI</a></li><li><a href="https://www.canada.ca/fr/agence-revenu/services/impot/administrateurs-regimes-enregistres/fesp/plafonds-cd-reer-rpdb-celi-mgap.html">ARC – Plafonds des REER, des CELI et autres régimes</a></li></ul></section>
+<nav class="pager"><a class="btn" href="../outils.html">← Tous les outils</a></nav>
+<script>const $=n=>n.toLocaleString('fr-CA',{maximumFractionDigits:0})+' $';const $2=n=>n.toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';const v=id=>Number(document.getElementById(id).value)||0;const L={2009:5000,2010:5000,2011:5000,2012:5000,2013:5500,2014:5500,2015:10000,2016:5500,2017:5500,2018:5500,2019:6000,2020:6000,2021:6000,2022:6000,2023:6500,2024:7000,2025:7000,2026:7000};
+function calc(){const t=document.getElementById('tjrs').checked;document.getElementById('lres').hidden=t;
+ const s=Math.max(2009,v('nais')+18,t?0:v('res'));let c=0,rows='';
+ for(let y=s;y<=2026;y++){c+=L[y];rows+=`<tr><td>${y}</td><td>${$(L[y])}</td></tr>`}
+ const d=c-v('cot')+v('ret');
+ document.getElementById('r').textContent=s>2026?'0 $':$(Math.max(d,0));
+ document.getElementById('tb').innerHTML=rows||'<tr><td colspan=2>Aucune année admissible avant 2027.</td></tr>';
+ document.getElementById('kv').innerHTML=`<span>Droits cumulés ${s<=2026?s+' à 2026':''}</span><span>${$(c)}</span><span>− Tes cotisations</span><span>${$(v('cot'))}</span><span>+ Retraits avant 2026</span><span>${$(v('ret'))}</span><span class=tot>Disponible en 2026</span><span class=tot>${$(d)}</span>`+(d<0?`<span style="grid-column:1/-1;color:var(--red)">Résultat négatif : tu aurais cotisé plus que tes droits. L'ARC impose 1 % par mois sur l'excédent ; vérifie ton dossier.</span>`:'')+(v('ret26')?`<span style="grid-column:1/-1;color:var(--muted)">Tes retraits de 2026 (${$(v('ret26'))}) s'ajouteront à tes droits le 1<sup>er</sup> janvier 2027, avec le nouveau plafond annuel.</span>`:'');}
+document.getElementById('f').addEventListener('input',calc);calc();</script></main>
+<footer class="site"><div class="wrap"><p><strong style="color:var(--ink)">Information générale seulement.</strong> Rien sur ce site n'est un conseil financier, fiscal ou juridique personnalisé. Les règles et les montants changent : vérifie toujours la source officielle. Recherche assistée par IA, chaque chiffre vérifié avant publication.</p>
+<div class="stack" style="gap:6px"><span>Contact : <span class="mail">mmoushkil@gmail.com</span></span><span><a href="https://www.youtube.com/@mashimoushkil">YouTube</a> · <a href="https://www.instagram.com/mashimoushkil">Instagram</a> · <a href="https://www.facebook.com/profile.php?id=61596326894950">Facebook</a> · <a href="https://www.tiktok.com/@mashimoushkil">TikTok</a></span></div></div></footer></body></html>
