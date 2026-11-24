@@ -1,0 +1,76 @@
+<!doctype html><html lang="fr-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Budget fédéral 2026 · Mashi Moushkil</title><meta name="claude:viewport-fit-sides" content="cover"><meta name="description" content="Les mesures du budget fédéral 2026 qui pourraient toucher ton portefeuille, expliquées simplement, avec les sources."><meta property="og:title" content="Budget fédéral 2026 · Mashi Moushkil"><meta property="og:description" content="Les mesures du budget fédéral 2026 qui pourraient toucher ton portefeuille, expliquées simplement, avec les sources."><meta property="og:image" content="../img/partage.jpg"><link rel="icon" href="../img/logo.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Metal+Mania&family=Oswald:wght@500;600;700&family=Patrick+Hand&display=swap"><style>
+/* Panneaux de manga sur papier : bordures d'encre épaisses, ombre décalée, rouge en accent unique */
+:root{--paper:#F4F1EA;--panel:#FFFFFF;--ink:#141414;--muted:#5C574F;--line:#D8D2C6;--red:#C8102E;--amber:#E3A21A;--on-red:#FFFFFF;
+--display:"Oswald","Arial Narrow",Arial,sans-serif;--brand:"Metal Mania","Oswald",serif;--body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--hand:"Patrick Hand","Comic Sans MS",cursive}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#121212;--panel:#1C1C1C;--ink:#ECE7DC;--muted:#ABA497;--line:#34322E;--red:#E5485E;--amber:#F0B43A;--on-red:#FFFFFF;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#121212;--panel:#1C1C1C;--ink:#ECE7DC;--muted:#ABA497;--line:#34322E;--red:#E5485E;--amber:#F0B43A;--on-red:#FFFFFF;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--body);background-image:radial-gradient(var(--line) 1px,transparent 1.2px);background-size:18px 18px}
+a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.site{border-bottom:3px solid var(--ink);background:var(--paper)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:52px;height:52px;border-radius:50%;border:2px solid var(--ink)}
+.brand b{display:block;font:400 1.75rem/1 var(--brand)}
+.brand small{display:block;font:700 .72rem/1.3 var(--display);letter-spacing:.12em;color:var(--red);text-transform:uppercase}
+nav.main{display:flex;flex-wrap:wrap;gap:4px 18px}
+nav.main a{font:600 .95rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:6px 0;border-bottom:3px solid transparent}
+nav.main a:hover,nav.main a[aria-current]{border-color:var(--red)}
+main{padding-block:28px 56px;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);text-transform:uppercase}
+h2{font-size:clamp(1.5rem,3.4vw,2.1rem);text-transform:uppercase}
+h3{font-size:1.25rem}
+p{margin:0;max-width:66ch}
+.chip{display:inline-block;align-self:flex-start;font:700 .78rem/1 var(--display);letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 10px;border-radius:4px}
+.chip.red{background:var(--red);color:var(--on-red)}.chip.line{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.hand{font-family:var(--hand);font-size:1.45rem;line-height:1.3;color:var(--red)}
+.panel{background:var(--panel);border:3px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--ink);padding:22px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:center}
+.hero .ribbon{display:inline-block;background:var(--red);color:var(--on-red);font:700 clamp(.95rem,2.4vw,1.25rem)/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;border-radius:6px;transform:rotate(-1.5deg);justify-self:start}
+.hero img{width:100%;max-width:340px;aspect-ratio:1;border-radius:50%;border:4px solid var(--ink);justify-self:center;box-shadow:8px 8px 0 var(--red)}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 .95rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:12px 16px;border:3px solid var(--ink);border-radius:8px;background:var(--panel);box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn.primary{background:var(--red);color:var(--on-red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:22px}
+.rub{display:flex;flex-direction:column;gap:8px;text-decoration:none}
+.rub .n{font:700 .8rem/1 var(--display);letter-spacing:.12em;color:var(--red)}
+.rub p{color:var(--muted);font-size:.98rem}
+.rub:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--ink)}
+.rules{counter-reset:r;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:18px;list-style:none;margin:0;padding:0}
+.rules li{counter-increment:r;border-top:3px solid var(--ink);padding-top:10px}
+.rules li::before{content:"Règle " counter(r);display:block;font:700 .78rem/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.myth{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:3px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--panel)}
+.myth>div{padding:18px}.myth>div:first-child{border-right:3px solid var(--ink)}
+.myth .q{font-family:var(--hand);font-size:1.35rem;line-height:1.3}
+.tbl{overflow-x:auto;border:3px solid var(--ink);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+th{font:700 .85rem/1.2 var(--display);letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper)}
+tr:last-child td{border-bottom:0}
+.prog{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.prog li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.prog li span.t{flex:1;min-width:0}
+.prog .soon{font:600 .8rem/1 var(--display);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.note{border-left:6px solid var(--amber);padding:12px 16px;background:var(--panel);border-radius:0 8px 8px 0}
+.measure{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+.measure .k{font:700 2.4rem/1 var(--display);color:var(--red);font-variant-numeric:tabular-nums}
+.pager{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+ul.src{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:.95rem}
+footer.site{border-top:3px solid var(--ink);background:var(--panel)}
+footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;padding-block:24px;font-size:.92rem;color:var(--muted)}
+footer.site p{max-width:60ch}
+.mail{font-family:var(--body);user-select:all;color:var(--ink);font-weight:600}
+@media (max-width:720px){.hero{grid-template-columns:1fr}.hero img{max-width:220px;order:-1}.myth{grid-template-columns:1fr}.myth>div:first-child{border-right:0;border-bottom:3px solid var(--ink)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><header class="site"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/logo.jpg" alt=""><span><b>Mashi Moushkil</b><small>Pas de problème · on t'explique tout</small></span></a><nav class="main" aria-label="Navigation principale"><a href="../index.html#rubriques">Rubriques</a><a href="../actualite/budget-federal-2026.html" aria-current=page>Actualité</a><a href="../outils.html">Outils</a><a href="../a-propos.html">À propos</a></nav></div></header>
+<main class="wrap"><section class="stack"><span class="chip red">Actualité · 5 novembre 2026</span><h1>Budget fédéral 2026 : ce qui pourrait changer pour ton portefeuille</h1><p class="hand">Des dizaines de mesures, beaucoup de jargon… Pas de problème : on fait le tri.</p></section>
+<div class="note stack"><strong>À savoir d'abord</strong><p>Un : ce sont des propositions. Le 19 novembre, la Chambre des communes a voté pour le budget, mais chaque mesure doit encore être adoptée dans un projet de loi pour s&#x27;appliquer.</p><p>Deux : les taux d&#x27;impôt des particuliers ne changent pas.</p><p>Trois : le gouvernement prévoit un déficit de 62,3 milliards de dollars pour l&#x27;exercice 2026-2027.</p></div>
+<section class="stack"><div class="panel measure"><span class="k">1</span><div class="stack"><h3>Date limite de déclaration</h3><p>Première mesure : la date limite pour produire ta déclaration fédérale, et pour payer ton solde, passerait du 30 avril au 15 mai.</p><p>Ce serait à partir de l&#x27;année d&#x27;imposition 2027, donc pour la déclaration du printemps 2028.</p><p>Pour les travailleurs autonomes, c&#x27;est l&#x27;inverse : leur date de production avancerait du 15 juin au 15 mai.</p><p>Au Québec, la déclaration provinciale relève de Revenu Québec. Ce budget fédéral ne change pas sa date.</p></div></div><div class="panel measure"><span class="k">2</span><div class="stack"><h3>Supplément pour l&#x27;épicerie et les besoins essentiels</h3><p>Deuxième : l&#x27;allocation canadienne pour l&#x27;épicerie et les besoins essentiels recevrait un supplément unique, versé au début de 2027.</p><p>Pour un couple avec deux enfants, ce supplément pourrait atteindre 679 dollars. Pour une personne seule sans enfant, 339 dollars.</p><p>Il s&#x27;ajoute à la prestation habituelle, selon les critères d&#x27;admissibilité. Et elle est calculée à partir de ta déclaration de revenus : encore une raison de la faire !</p></div></div><div class="panel measure"><span class="k">3</span><div class="stack"><h3>Assurance-dépôts</h3><p>La limite de protection des dépôts admissibles, auprès des institutions membres de la Société d&#x27;assurance-dépôts du Canada, passerait de 100 000 à 250 000 dollars.</p></div></div><div class="panel measure"><span class="k">4</span><div class="stack"><h3>Biens à l&#x27;étranger</h3><p>Le seuil du formulaire de déclaration des biens étrangers doublerait : de 100 000 à 200 000 dollars de coût total.</p><p>Attention : ce formulaire vise certains biens seulement, comme des comptes bancaires, des placements ou un immeuble locatif. Un bien à usage personnel, comme une résidence que tu utilises toi-même, n&#x27;est généralement pas visé.</p><p>Ce serait à partir de l&#x27;année d&#x27;imposition 2027. On y reviendra en détail dans la rubrique patrimoine entre deux pays.</p></div></div><div class="panel measure"><span class="k">5</span><div class="stack"><h3>Régime d&#x27;épargne-retraite « à vie »</h3><p>Cinquième : le régime d&#x27;épargne-retraite pourrait devenir « à vie ».</p><p>Aujourd&#x27;hui, il faut le convertir au plus tard à la fin de l&#x27;année de tes 71 ans.</p><p>Le gouvernement propose d&#x27;éliminer cette conversion obligatoire. Les retraits minimaux, eux, resteraient.</p><p>C&#x27;est en consultation jusqu&#x27;au 8 janvier 2027.</p></div></div><div class="panel measure"><span class="k">+</span><div class="stack"><h3>En bref</h3><p>Le crédit canadien pour aidant naturel deviendrait remboursable à partir de 2027.</p><p>Et le seuil des acomptes provisionnels passerait de 3 000 à 7 500 dollars, ou de 1 800 à 4 500 dollars au Québec, à partir de 2028.</p></div></div></section>
+<section class="panel stack"><h2>La capsule vidéo</h2><p>Les mêmes mesures en 2 minutes 40, avec des exemples.</p><div class="btns"><a class="btn primary" href="https://www.youtube.com/@mashimoushkil">▶ YouTube</a><a class="btn" href="https://www.instagram.com/mashimoushkil">Instagram</a><a class="btn" href="https://www.facebook.com/profile.php?id=61596326894950">Facebook</a><a class="btn" href="https://www.tiktok.com/@mashimoushkil">TikTok</a></div></section>
+<section class="stack"><h3>Sources</h3><ul class="src"><li><a href="https://budget.canada.ca/2026/report-rapport/chap3-en.html">Budget 2026 – Chapitre 3 : Une vie plus abordable</a></li><li><a href="https://www.canada.ca/en/department-finance/news/2026/11/budget-2026-key-measures.html">Finances Canada – Budget 2026 : mesures clés</a></li><li><a href="https://www.rbcwealthmanagement.com/en-ca/insights/federal-budget-2026-an-overview-of-key-measures-that-may-impact-you">RBC Gestion de patrimoine – Budget fédéral 2026 : aperçu des mesures</a></li><li><a href="https://www.pwc.com/ca/en/services/tax/budgets/2026/2026-federal-budget-analysis.html">PwC Canada – Analyse du budget fédéral 2026</a></li><li><a href="https://kpmg.com/ca/en/insights/2026/11/2026-federal-budget-highlights.html">KPMG – Faits saillants du budget fédéral 2026</a></li><li><a href="https://www.cp24.com/news/canada/2026/11/19/liberals-expected-to-face-house-of-commons-vote-on-budget-2026-today/">CP24 / La Presse Canadienne – Vote des Communes sur le budget 2026 (19 nov. 2026)</a></li><li><a href="https://www.lenouvelliste.ca/affaires/2026/11/05/voici-quelques-mesures-du-budget-federal-presente-jeudi-QUDBEKXU6FAJFPG7XSGIWRRIKE/">La Presse Canadienne via Le Nouvelliste – Voici quelques mesures du budget fédéral (5 nov. 2026)</a></li></ul></section></main>
+<footer class="site"><div class="wrap"><p><strong style="color:var(--ink)">Information générale seulement.</strong> Rien sur ce site n'est un conseil financier, fiscal ou juridique personnalisé. Les règles et les montants changent : vérifie toujours la source officielle. Recherche assistée par IA, chaque chiffre vérifié avant publication.</p>
+<div class="stack" style="gap:6px"><span>Contact : <span class="mail">mmoushkil@gmail.com</span></span><span><a href="https://www.youtube.com/@mashimoushkil">YouTube</a> · <a href="https://www.instagram.com/mashimoushkil">Instagram</a> · <a href="https://www.facebook.com/profile.php?id=61596326894950">Facebook</a> · <a href="https://www.tiktok.com/@mashimoushkil">TikTok</a></span></div></div></footer></body></html>
