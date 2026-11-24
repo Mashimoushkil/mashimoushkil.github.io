@@ -1,0 +1,141 @@
+<!doctype html><html lang="fr-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Électrique ou essence ? Le coût total · Mashi Moushkil</title><meta name="claude:viewport-fit-sides" content="cover"><meta name="description" content="Compare le coût total d&#x27;une voiture électrique et d&#x27;une voiture à essence au Québec ou en Ontario : prix, taxes, subventions, énergie, entretien, borne de recharge et revente."><meta property="og:title" content="Électrique ou essence ? Le coût total · Mashi Moushkil"><meta property="og:description" content="Compare le coût total d&#x27;une voiture électrique et d&#x27;une voiture à essence au Québec ou en Ontario : prix, taxes, subventions, énergie, entretien, borne de recharge et revente."><meta property="og:image" content="https://mashimoushkil.github.io/img/partage.jpg"><meta property="og:url" content="https://mashimoushkil.github.io/outils/electrique-ou-essence.html"><meta property="og:type" content="website"><meta property="og:locale" content="fr_CA"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://mashimoushkil.github.io/outils/electrique-ou-essence.html"><link rel="icon" href="../img/logo.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Metal+Mania&family=Oswald:wght@500;600;700&family=Patrick+Hand&display=swap"><style>
+/* Panneaux de manga sur papier : bordures d'encre épaisses, ombre décalée, rouge en accent unique */
+:root{--paper:#F4F1EA;--panel:#FFFFFF;--ink:#141414;--muted:#5C574F;--line:#D8D2C6;--red:#C8102E;--amber:#E3A21A;--on-red:#FFFFFF;
+--display:"Oswald","Arial Narrow",Arial,sans-serif;--brand:"Metal Mania","Oswald",serif;--body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--hand:"Patrick Hand","Comic Sans MS",cursive}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#121212;--panel:#1C1C1C;--ink:#ECE7DC;--muted:#ABA497;--line:#34322E;--red:#E5485E;--amber:#F0B43A;--on-red:#FFFFFF;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#121212;--panel:#1C1C1C;--ink:#ECE7DC;--muted:#ABA497;--line:#34322E;--red:#E5485E;--amber:#F0B43A;--on-red:#FFFFFF;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--body);background-image:radial-gradient(var(--line) 1px,transparent 1.2px);background-size:18px 18px}
+a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.site{border-bottom:3px solid var(--ink);background:var(--paper)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:52px;height:52px;border-radius:50%;border:2px solid var(--ink)}
+.brand b{display:block;font:400 1.75rem/1 var(--brand)}
+.brand small{display:block;font:700 .72rem/1.3 var(--display);letter-spacing:.12em;color:var(--red);text-transform:uppercase}
+nav.main{display:flex;flex-wrap:wrap;gap:4px 18px}
+nav.main a{font:600 .95rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:6px 0;border-bottom:3px solid transparent}
+nav.main a:hover,nav.main a[aria-current]{border-color:var(--red)}
+main{padding-block:28px 56px;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);text-transform:uppercase}
+h2{font-size:clamp(1.5rem,3.4vw,2.1rem);text-transform:uppercase}
+h3{font-size:1.25rem}
+p{margin:0;max-width:66ch}
+.chip{display:inline-block;align-self:flex-start;font:700 .78rem/1 var(--display);letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 10px;border-radius:4px}
+.chip.red{background:var(--red);color:var(--on-red)}.chip.line{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.hand{font-family:var(--hand);font-size:1.45rem;line-height:1.3;color:var(--red)}
+.panel{background:var(--panel);border:3px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--ink);padding:22px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:center}
+.hero .ribbon{display:inline-block;background:var(--red);color:var(--on-red);font:700 clamp(.95rem,2.4vw,1.25rem)/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;border-radius:6px;transform:rotate(-1.5deg);justify-self:start}
+.hero img{width:100%;max-width:340px;aspect-ratio:1;border-radius:50%;border:4px solid var(--ink);justify-self:center;box-shadow:8px 8px 0 var(--red)}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 .95rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:12px 16px;border:3px solid var(--ink);border-radius:8px;background:var(--panel);box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn.primary{background:var(--red);color:var(--on-red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:22px}
+.rub{display:flex;flex-direction:column;gap:8px;text-decoration:none}
+.rub .n{font:700 .8rem/1 var(--display);letter-spacing:.12em;color:var(--red)}
+.rub p{color:var(--muted);font-size:.98rem}
+.rub:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--ink)}
+.rules{counter-reset:r;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:18px;list-style:none;margin:0;padding:0}
+.rules li{counter-increment:r;border-top:3px solid var(--ink);padding-top:10px}
+.rules li::before{content:"Règle " counter(r);display:block;font:700 .78rem/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.myth{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:3px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--panel)}
+.myth>div{padding:18px}.myth>div:first-child{border-right:3px solid var(--ink)}
+.myth .q{font-family:var(--hand);font-size:1.35rem;line-height:1.3}
+.tbl{overflow-x:auto;border:3px solid var(--ink);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+th{font:700 .85rem/1.2 var(--display);letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper)}
+tr:last-child td{border-bottom:0}
+.prog{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.prog li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.prog li span.t{flex:1;min-width:0}
+.prog .soon{font:600 .8rem/1 var(--display);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.note{border-left:6px solid var(--amber);padding:12px 16px;background:var(--panel);border-radius:0 8px 8px 0}
+.measure{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+.measure .k{font:700 2.4rem/1 var(--display);color:var(--red);font-variant-numeric:tabular-nums}
+.pager{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+ul.src{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:.95rem}
+footer.site{border-top:3px solid var(--ink);background:var(--panel)}
+footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;padding-block:24px;font-size:.92rem;color:var(--muted)}
+footer.site p{max-width:60ch}
+.mail{font-family:var(--body);user-select:all;color:var(--ink);font-weight:600}
+@media (max-width:720px){.hero{grid-template-columns:1fr}.hero img{max-width:220px;order:-1}.myth{grid-template-columns:1fr}.myth>div:first-child{border-right:0;border-bottom:3px solid var(--ink)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><header class="site"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/logo.jpg" alt=""><span><b>Mashi Moushkil</b><small>Pas de problème · on t'explique tout</small></span></a><nav class="main" aria-label="Navigation principale"><a href="../index.html#rubriques">Rubriques</a><a href="../actualite/budget-federal-2026.html">Actualité</a><a href="../outils.html" aria-current=page>Outils</a><a href="../a-propos.html">À propos</a></nav></div></header>
+<main class="wrap"><style>
+.tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
+@media (max-width:820px){.tool{grid-template-columns:minmax(0,1fr)}}
+form.panel label{display:flex;flex-direction:column;gap:6px;font:600 .95rem/1.3 var(--body)}
+form.panel label small{font-weight:400;color:var(--muted)}
+form.panel input,form.panel select{font:500 1.05rem/1.2 var(--body);padding:10px 12px;border:2px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink);width:100%;font-variant-numeric:tabular-nums}
+form.panel .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}form.panel label,form.panel select{min-width:0;max-width:100%}form.panel{min-width:0}
+@media (max-width:480px){form.panel .row{grid-template-columns:minmax(0,1fr)}}
+.check{flex-direction:row!important;align-items:center}
+.check input{width:auto!important}
+.big{font:700 clamp(2.2rem,6vw,3.2rem)/1 var(--display);color:var(--red);font-variant-numeric:tabular-nums}
+.kv{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;font-variant-numeric:tabular-nums}
+.kv span:nth-child(even){text-align:right;font-weight:700}
+.kv .tot{border-top:2px solid var(--ink);padding-top:6px}
+details summary{cursor:pointer;font:700 .95rem/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase}
+.tbl{overflow-x:auto;max-width:100%}.tbl td+td{white-space:nowrap}.tbl table{min-width:0}@media (max-width:480px){.tbl td,.tbl th{padding:6px 6px;font-size:.85rem}}.tbl td,.tbl th{padding:8px 10px;font-variant-numeric:tabular-nums}
+.warn{border-left:6px solid var(--red);padding:10px 14px;background:var(--panel);border-radius:0 8px 8px 0}
+</style>
+<section class="stack"><span class="chip red">Outil · information générale</span><h1>Électrique ou essence ? Le coût total</h1><p>Une voiture électrique coûte souvent plus cher à l'achat, et moins cher chaque kilomètre. La question : combien d'années faut-il pour rattraper la différence, avec ton kilométrage et le prix de l'énergie chez toi ?</p></section>
+<section class="tool"><form class="panel stack" id="f" onsubmit="event.preventDefault()"><label>Province<select id="prov"><option value="qc">Québec</option><option value="on">Ontario</option></select></label><label>Date de la transaction<select id="an"><option value="2026">D'ici le 31 décembre 2026</option><option value="2027">En 2027</option></select></label><div class="row"><label>Prix du modèle électrique<input id="pe" type="number" min="0" step="500" value="46000" inputmode="numeric"><small>Avant taxes, frais compris.</small></label>
+<label>Prix du modèle à essence<input id="pg" type="number" min="0" step="500" value="36000" inputmode="numeric"></label></div>
+<label class="check"><input id="can" type="checkbox"> Modèle électrique assemblé au Canada</label>
+<div class="row"><label>Km par année<input id="km" type="number" min="0" step="1000" value="18000" inputmode="numeric"></label>
+<label>Années de comparaison<input id="ans" type="number" min="1" max="15" value="8" inputmode="numeric"></label></div>
+<div class="row"><label>Électricité (kWh / 100 km)<input id="ce" type="number" min="5" max="40" step="0.5" value="18" inputmode="decimal"><small>Plus élevé en hiver : 18 à 22 est réaliste.</small></label>
+<label>Prix de l'électricité ($ / kWh)<input id="xe" type="number" min="0" step="0.01" value="0.10" inputmode="decimal"><small>Recharge surtout à la maison.</small></label></div>
+<div class="row"><label>Essence (L / 100 km)<input id="cg" type="number" min="3" max="25" step="0.1" value="8" inputmode="decimal"></label>
+<label>Prix de l'essence ($ / L)<input id="xg" type="number" min="0" step="0.01" value="1.50" inputmode="decimal"></label></div>
+<details><summary>Entretien, borne et revente</summary><div class="stack" style="margin-top:12px"><div class="row"><label>Entretien par année, électrique<input id="me" type="number" min="0" step="50" value="500" inputmode="numeric"></label>
+<label>Entretien par année, essence<input id="mg" type="number" min="0" step="50" value="1000" inputmode="numeric"></label></div>
+<div class="row"><label>Borne de recharge à la maison, installée<input id="bo" type="number" min="0" step="100" value="1800" inputmode="numeric"></label>
+<label>Hausse des prix de l'énergie par année (%)<input id="he" type="number" min="0" max="10" step="0.5" value="2" inputmode="decimal"></label></div>
+<div class="row"><label>Valeur de revente, électrique (% du prix)<input id="re" type="number" min="0" max="100" step="1" value="35" inputmode="numeric"></label>
+<label>Valeur de revente, essence (% du prix)<input id="rg" type="number" min="0" max="100" step="1" value="35" inputmode="numeric"></label></div></div></details></form><div class="panel stack" id="out" aria-live="polite"><p id="verdict" class="big" style="font-size:clamp(1.5rem,4vw,2rem);line-height:1.15"></p><p id="be" style="font-weight:700;margin:0"></p><div class="tbl"><table><thead><tr><th></th><th>Électrique</th><th>Essence</th></tr></thead><tbody id="tb"></tbody></table></div><details><summary>Coût cumulé année par année</summary><div class="tbl"><table><thead><tr><th>Année</th><th>Électrique</th><th>Essence</th></tr></thead><tbody id="ty"></tbody></table></div></details><p id="note" style="margin:0;color:var(--muted)"></p></div></section>
+<section class="stack"><h2>Comment c'est calculé</h2><p><strong>Achat :</strong> prix + taxes de vente (14,975 % au Québec, 13 % en Ontario), moins les subventions pour le modèle électrique : 5 000 $ du fédéral en 2026 (4 000 $ en 2027) si la transaction est d'au plus 50 000 $ ou si le véhicule est assemblé au Canada, et 2 000 $ du Québec avec Roulez vert jusqu'au 31 décembre 2026.</p>
+<p><strong>Chaque année :</strong> énergie (km × consommation × prix, avec la hausse choisie) et entretien. Une voiture électrique n'a pas de vidange, et ses freins s'usent moins grâce au freinage régénératif.</p>
+<p><strong>À la fin :</strong> on retire la valeur de revente. Le coût total, divisé par les kilomètres roulés, donne le coût par kilomètre.</p>
+<p><strong>Repères de prix de l'électricité :</strong> au Québec, le tarif résidentiel d'Hydro-Québec tourne autour de 7 à 11 ¢ le kWh ; en Ontario, compte plutôt 12 à 18 ¢ avec la livraison, moins la nuit avec un tarif selon l'heure. Recharger sur une borne rapide publique coûte bien plus cher : si tu le fais souvent, augmente le prix moyen.</p></section>
+<div class="warn stack"><strong>Limites de l'outil</strong><p>Les deux voitures ont la même assurance et la même immatriculation dans l'outil ; en réalité, elles peuvent différer. Les subventions dépendent du modèle, de sa liste officielle et des fonds restants. La valeur de revente des voitures électriques est encore difficile à prévoir. L'outil ne compte pas le financement (voir l'outil « Comptant, financement ou location ») ni le remplacement de la batterie, rare pendant la garantie (souvent 8 ans).</p><p>C'est une estimation à titre indicatif, pas un conseil personnalisé. Le chiffre officiel est celui de l'ARC, de Service Canada ou de Revenu Québec.</p></div>
+<section class="stack"><h3>Sources (vérifiées le 24 novembre 2026)</h3><ul class="src"><li><a href="https://tc.canada.ca/fr/transport-routier/technologies-novatrices/vehicules-electriques/programme-abordabilite-vehicules-electriques/questions-reponses">Transports Canada – Programme pour l&#x27;abordabilité des véhicules électriques : questions et réponses</a></li><li><a href="https://tc.canada.ca/fr/transport-routier/technologies-novatrices/vehicules-electriques/programme-abordabilite-vehicules-electriques-pave/liste-vehicules-pave">Transports Canada – Liste des véhicules admissibles (PAVE)</a></li><li><a href="https://www.quebec.ca/transports/transport-electrique/aide-financiere-vehicule-electrique/programme-roulez-vert">Gouvernement du Québec – Programme Roulez vert</a></li><li><a href="https://www.quebec.ca/transports/transport-electrique/aide-financiere-vehicule-electrique/vehicule-neuf/montant-rabais">Gouvernement du Québec – Montant de l&#x27;aide pour un véhicule électrique neuf</a></li><li><a href="https://www.quebec.ca/transports/transport-electrique/aide-financiere-vehicule-electrique/vehicule-neuf/conditions-requises">Gouvernement du Québec – Conditions pour un véhicule neuf (location)</a></li></ul></section>
+<nav class="pager"><a class="btn" href="../outils.html">← Tous les outils</a></nav>
+<script>const $=n=>n.toLocaleString('fr-CA',{maximumFractionDigits:0})+' $';const $2=n=>n.toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';const v=id=>Number(document.getElementById(id).value)||0;const pc=x=>(x*100).toLocaleString('fr-CA',{minimumFractionDigits:1,maximumFractionDigits:1})+'\u00a0%';const sel=id=>document.getElementById(id).value;const ck=id=>document.getElementById(id).checked;const $id=id=>document.getElementById(id);const nl=(a,b,k='')=>`<span${k}>${a}</span><span${k}>${b}</span>`;
+const TAXV={qc:.14975,on:.13};
+/* type : ess, hyb (hybride non rechargeable), phev15 (≥ 15 kWh), phev8 (< 15 kWh), ve ; an : 2026 ou 2027 ; mois : 0 = achat, sinon durée de location */
+function subFed(type,an,valeur,canada,mois){const base=type==='ve'?(an>=2027?4000:5000):(type==='phev15'||type==='phev8')?(an>=2027?2000:2500):0;
+ if(!base||(!canada&&valeur>50000))return 0;if(mois&&mois<12)return 0;return mois?base*Math.min(1,mois/48):base}
+function subQC(prov,type,an,mois){if(prov!=='qc'||an>=2027)return 0;const base=type==='ve'?2000:type==='phev15'?1000:type==='phev8'?500:0;
+ if(!base||!mois)return base;if(mois<12)return 0;return base*(mois>=48?1:mois>=36?.75:mois>=24?.5:.25)}
+function pmtMensuel(L,taux,n){const i=taux/12;return i===0?L/n:L*i/(1-Math.pow(1+i,-n))}
+function soldeApres(L,taux,n,k){const i=taux/12,p=pmtMensuel(L,taux,n);return i===0?Math.max(0,L-p*k):Math.max(0,L*Math.pow(1+i,k)-p*(Math.pow(1+i,k)-1)/i)}
+const TYPES='<option value="ess">Essence</option><option value="hyb">Hybride (non rechargeable)</option><option value="phev15">Hybride rechargeable (batterie de 15 kWh ou plus)</option><option value="phev8">Hybride rechargeable (moins de 15 kWh)</option><option value="ve">100 % électrique</option>';
+function calc(){const p=sel('prov'),an=Number(sel('an')),T=TAXV[p],n=Math.max(1,Math.min(15,Math.round(v('ans')))),km=v('km');
+ const sub=subFed('ve',an,v('pe'),ck('can'),0)+subQC(p,'ve',an,0);
+ const aE=v('pe')*(1+T)-sub+v('bo'),aG=v('pg')*(1+T);
+ let cE=aE,cG=aG,eE=0,eG=0,rows='',be=null;
+ for(let y=1;y<=n;y++){const f=Math.pow(1+v('he')/100,y-1),ee=km/100*v('ce')*v('xe')*f,eg=km/100*v('cg')*v('xg')*f;eE+=ee;eG+=eg;cE+=ee+v('me');cG+=eg+v('mg');
+  if(be===null&&cE<=cG)be=y;rows+=`<tr><td>${y}</td><td>${$(cE)}</td><td>${$(cG)}</td></tr>`}
+ const rE=v('pe')*v('re')/100,rG=v('pg')*v('rg')/100,tE=cE-rE,tG=cG-rG,d=tG-tE;
+ $id('verdict').textContent=d>=0?`Électrique : ${$(d)} de moins sur ${n} ans`:`Essence : ${$(-d)} de moins sur ${n} ans`;
+ $id('be').textContent=be?(be===1?'L\'électrique est déjà moins cher dès la première année, avant même la revente.':`Avant la revente, l'électrique rattrape l'essence pendant l'année ${be}.`):`Avant la revente, l'électrique ne rattrape pas l'essence en ${n} ans avec ces hypothèses.`;
+ const row=(l,a,b,k='')=>`<tr${k}><td>${l}</td><td>${a}</td><td>${b}</td></tr>`;
+ $id('tb').innerHTML=row('Prix + taxes',$(v('pe')*(1+T)),$(aG))+row('Subventions',sub?'− '+$(sub):'—','—')+row('Borne de recharge',$(v('bo')),'—')
+  +row(`Énergie sur ${n} ans`,$(eE),$(eG))+row(`Entretien sur ${n} ans`,$(v('me')*n),$(v('mg')*n))+row('− Valeur de revente',$(rE),$(rG))
+  +row('<strong>Coût total</strong>',`<strong>${$(tE)}</strong>`,`<strong>${$(tG)}</strong>`)+row('Coût par km',`${(tE/(km*n)).toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})} $`,`${(tG/(km*n)).toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})} $`)
+  +row("Énergie, 1<sup>re</sup> année, par mois",$2(km/100*v('ce')*v('xe')/12),$2(km/100*v('cg')*v('xg')/12));
+ $id('ty').innerHTML=rows;
+ const w=[];if(!ck('can')&&v('pe')>50000)w.push('Au-dessus de 50 000 $, pas de subvention fédérale, sauf pour un véhicule assemblé au Canada.');if(p==='qc'&&an>=2027)w.push('Roulez vert prend fin le 31 décembre 2026.');
+ $id('note').innerHTML=w.join('<br>');}
+document.getElementById('f').addEventListener('input',calc);calc();</script></main>
+<footer class="site"><div class="wrap"><p><strong style="color:var(--ink)">Information générale seulement.</strong> Rien sur ce site n'est un conseil financier, fiscal ou juridique personnalisé. Les règles et les montants changent : vérifie toujours la source officielle. Recherche assistée par IA, chaque chiffre vérifié avant publication.</p>
+<div class="stack" style="gap:6px"><span>Contact : <span class="mail">mmoushkil@gmail.com</span></span><span><a href="https://www.youtube.com/@mashimoushkil">YouTube</a> · <a href="https://www.instagram.com/mashimoushkil">Instagram</a> · <a href="https://www.facebook.com/profile.php?id=61596326894950">Facebook</a> · <a href="https://www.tiktok.com/@mashimoushkil">TikTok</a></span></div></div></footer></body></html>

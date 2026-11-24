@@ -70,12 +70,12 @@ footer.site p{max-width:60ch}
 </style></head><body><header class="site"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/logo.jpg" alt=""><span><b>Mashi Moushkil</b><small>Pas de problème · on t'explique tout</small></span></a><nav class="main" aria-label="Navigation principale"><a href="../index.html#rubriques">Rubriques</a><a href="../actualite/budget-federal-2026.html">Actualité</a><a href="../outils.html" aria-current=page>Outils</a><a href="../a-propos.html">À propos</a></nav></div></header>
 <main class="wrap"><style>
 .tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
-@media (max-width:820px){.tool{grid-template-columns:1fr}}
+@media (max-width:820px){.tool{grid-template-columns:minmax(0,1fr)}}
 form.panel label{display:flex;flex-direction:column;gap:6px;font:600 .95rem/1.3 var(--body)}
 form.panel label small{font-weight:400;color:var(--muted)}
 form.panel input,form.panel select{font:500 1.05rem/1.2 var(--body);padding:10px 12px;border:2px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink);width:100%;font-variant-numeric:tabular-nums}
-form.panel .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media (max-width:480px){form.panel .row{grid-template-columns:1fr}}
+form.panel .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}form.panel label,form.panel select{min-width:0;max-width:100%}form.panel{min-width:0}
+@media (max-width:480px){form.panel .row{grid-template-columns:minmax(0,1fr)}}
 .check{flex-direction:row!important;align-items:center}
 .check input{width:auto!important}
 .big{font:700 clamp(2.2rem,6vw,3.2rem)/1 var(--display);color:var(--red);font-variant-numeric:tabular-nums}
@@ -83,7 +83,7 @@ form.panel .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .kv span:nth-child(even){text-align:right;font-weight:700}
 .kv .tot{border-top:2px solid var(--ink);padding-top:6px}
 details summary{cursor:pointer;font:700 .95rem/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase}
-.tbl table{min-width:0}.tbl td,.tbl th{padding:8px 10px;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto;max-width:100%}.tbl td+td{white-space:nowrap}.tbl table{min-width:0}@media (max-width:480px){.tbl td,.tbl th{padding:6px 6px;font-size:.85rem}}.tbl td,.tbl th{padding:8px 10px;font-variant-numeric:tabular-nums}
 .warn{border-left:6px solid var(--red);padding:10px 14px;background:var(--panel);border-radius:0 8px 8px 0}
 </style>
 <section class="stack"><span class="chip red">Outil · information générale</span><h1>Louer ou acheter ?</h1><p>Acheter, ce n'est pas toujours « payer pour soi », et louer, ce n'est pas « jeter son argent ». L'outil compare deux personnes avec le même budget : l'une achète, l'autre loue et place sa mise de fonds, puis la différence de coûts chaque mois. Qui a le plus à la fin ?</p></section>
@@ -113,7 +113,7 @@ details summary{cursor:pointer;font:700 .95rem/1.2 var(--display);letter-spacing
 <div class="warn stack"><strong>Limites de l'outil</strong><p>Tout dépend des hypothèses : une petite différence de rendement, de hausse des prix ou des loyers peut renverser le résultat. Essaie plusieurs scénarios. Le taux hypothécaire est gardé constant, sans renouvellement à un autre taux. Certaines villes ajoutent leurs propres tranches de droits de mutation (Montréal pour les propriétés plus chères, Toronto avec sa taxe municipale qui double presque la facture) : l'outil ne les inclut pas, ni les aides aux premiers acheteurs comme le CELIAPP ou les crédits provinciaux. Il ne mesure pas non plus ce qui ne se compte pas : la stabilité, la liberté de déménager, le temps passé à entretenir.</p><p>C'est une estimation à titre indicatif, pas un conseil personnalisé. Le chiffre officiel est celui de l'ARC, de Service Canada ou de Revenu Québec.</p></div>
 <section class="stack"><h3>Sources (vérifiées le 24 novembre 2026)</h3><ul class="src"><li><a href="https://www.cmhc-schl.gc.ca/fr/consumers/home-buying/mortgage-loan-insurance-for-consumers/cmhc-mortgage-loan-insurance-cost">SCHL – Coût de l&#x27;assurance prêt hypothécaire</a></li><li><a href="https://cmhc-schl.gc.ca/professionnels/financement-de-projets-et-financement-hypothecaire/assurance-pret-hypothecaire/aph-po-et-petits-immeubles-locatifs/primes-dassurance-pret-hypothecaire">SCHL – Primes d&#x27;assurance prêt hypothécaire (surprime pour amortissement de plus de 25 ans)</a></li><li><a href="https://www.quebec.ca/gouvernement/gestion-municipale/finances-fiscalite-municipales/fiscalite/droits-mutations-immobilieres">Gouvernement du Québec – Droits sur les mutations immobilières</a></li><li><a href="https://www.armagh.ca/data/pdf/finances-taxation/taxation/Droits%20de%20mutation%20-%20Exercice%20financier%202026.pdf">Municipalité d&#x27;Armagh – Droits de mutation, exercice financier 2026 (tranches 2026)</a></li><li><a href="https://www.ontario.ca/fr/document/droits-de-cession-immobiliere/calcul-des-droits-de-cession-immobiliere">Gouvernement de l&#x27;Ontario – Calcul des droits de cession immobilière</a></li><li><a href="https://www.ontario.ca/fr/document/droits-de-cession-immobiliere/remboursements-des-droits-de-cession-immobiliere-aux">Gouvernement de l&#x27;Ontario – Remboursements aux acheteurs d&#x27;une première habitation</a></li></ul></section>
 <nav class="pager"><a class="btn" href="../outils.html">← Tous les outils</a></nav>
-<script>const $=n=>n.toLocaleString('fr-CA',{maximumFractionDigits:0})+' $';const $2=n=>n.toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';const v=id=>Number(document.getElementById(id).value)||0;/* Mashi Moushkil · moteur d'impôt simplifié 2026 (Québec et Ontario), une personne seule, revenus d'emploi.
+<script>const $=n=>n.toLocaleString('fr-CA',{maximumFractionDigits:0})+' $';const $2=n=>n.toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';const v=id=>Number(document.getElementById(id).value)||0;/* Mashi Moushkil · moteur d'impôt simplifié 2026 (Québec et Ontario), une personne seule, revenus d'emploi.
    Paramètres vérifiés le 24 novembre 2026 : ARC, Revenu Québec, Retraite Québec, EDSC, RCGT (tables 2026). */
 const P26={
  fed:{br:[[58523,.14],[117045,.205],[181440,.26],[258482,.29],[Infinity,.33]],cr:.14,bpaMax:16452,bpaMin:14829,bpaA:181440,bpaB:258482,emp:1501,abQC:.165},
@@ -149,7 +149,7 @@ function tauxPeriode(tauxAnnuel,parAn){return Math.pow(1+tauxAnnuel/2,2/parAn)-1
 function paiement(capital,tauxAnnuel,ans,parAn=12){const i=tauxPeriode(tauxAnnuel,parAn),n=ans*parAn;return i===0?capital/n:capital*i/(1-Math.pow(1+i,-n))}
 function primeSCHL(prix,mise){const p=mise/prix;if(p>=.2||prix>=1500000)return 0;return(prix-mise)*(p>=.15?.028:p>=.10?.031:.04)}
 function miseMinimale(prix){return prix>=1500000?.2*prix:prix<=500000?.05*prix:25000+.1*(prix-500000)}
-const pc=x=>(x*100).toLocaleString('fr-CA',{minimumFractionDigits:1,maximumFractionDigits:1})+' %';const sel=id=>document.getElementById(id).value;const ck=id=>document.getElementById(id).checked;const $id=id=>document.getElementById(id);const nl=(a,b,k='')=>`<span${k}>${a}</span><span${k}>${b}</span>`;function droits(p,P,pa){if(p==='qc')return bracketTax(P,[[62900,.005],[315000,.01],[Infinity,.015]]);
+const pc=x=>(x*100).toLocaleString('fr-CA',{minimumFractionDigits:1,maximumFractionDigits:1})+'\u00a0%';const sel=id=>document.getElementById(id).value;const ck=id=>document.getElementById(id).checked;const $id=id=>document.getElementById(id);const nl=(a,b,k='')=>`<span${k}>${a}</span><span${k}>${b}</span>`;function droits(p,P,pa){if(p==='qc')return bracketTax(P,[[62900,.005],[315000,.01],[Infinity,.015]]);
  return Math.max(0,bracketTax(P,[[55000,.005],[250000,.01],[400000,.015],[2000000,.02],[Infinity,.025]])-(pa?4000:0))}
 function calc(){const p=sel('prov'),P=v('prix'),M=Math.min(v('mise'),P),t=v('taux')/100,am=Number(sel('am')),n=Math.max(1,Math.min(30,Math.round(v('ans'))));
  const mm=miseMinimale(P);let prime=primeSCHL(P,M);if(prime&&am>25)prime+=(P-M)*.002;const txp=prime*(p==='qc'?.09:.08),L=P-M+prime;
